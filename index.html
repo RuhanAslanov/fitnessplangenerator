@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global SEO Meta Tags -->
+    <meta name="description" content="AI powered fitness and nutrition plan generator. Create your custom workout routine and diet plan in seconds. Free, professional and easy to use.">
+    <meta name="keywords" content="fitness generator, workout planner, diet plan, AI fitness, home workout, healthy life, muscle building, weight loss">
+    <meta name="author" content="Elite Fitness Generator">
+    <link rel="canonical" href="https://your-domain.vercel.app/">
+
+    <!-- Open Graph (Sosial şəbəkələrdə paylaşım üçün: Facebook, Telegram, WhatsApp) -->
+    <meta property="og:title" content="Elite Fitness & Nutrition Plan Generator">
+    <meta property="og:description" content="Get your personalized AI-driven workout and diet plan instantly.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.vercel.app/">
+    
+    <!-- JSON-LD (Google-un tətbiq kimi tanıması üçün - Ən vacib hissə) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Elite Fitness & Nutrition Plan Generator",
+      "description": "Professional fitness and diet plan generator driven by AI.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Elite Fitness & Diet Plan Generator - Enterprise-Grade SaaS Application">
+    <title>Fitness & Nutrition Plan Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #ec4899;
+            --bg-dark: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body.light-mode {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --accent: #db2777;
+            --bg-dark: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            padding-bottom: 70px; /* Space for bottom sticky ad */
+        }
+
+        html[dir="rtl"] {
+            direction: rtl;
+            text-align: right;
+        }
+
+        html[dir="rtl"] input,
+        html[dir="rtl"] select {
+            text-align: right;
+        }
+
+        /* ===== ANIMATIONS & TRANSITIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .slide-in-up {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .shimmer-loading {
+            background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-tertiary) 50%, var(--bg-secondary) 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* ===== CARD STYLING ===== */
+        .card {
+            background-color: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        body.light-mode .card {
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+        }
+
+        /* ===== BUTTON STYLES ===== */
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        /* ===== GENDER CARD SELECTOR ===== */
+        .gender-card {
+            position: relative;
+            padding: 24px;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--bg-tertiary);
+        }
+
+        .gender-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .gender-card.active {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .gender-icon {
+            font-size: 48px;
+            line-height: 1;
+        }
+
+        /* ===== INPUT FIELDS ===== */
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            background-color: var(--bg-tertiary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="number"]:focus,
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            background-color: var(--bg-secondary);
+        }
+
+        /* ===== RADIO/CHECKBOX STYLING ===== */
+        .radio-group,
+        .checkbox-group {
+            display: grid;
+            gap: 12px;
+        }
+
+        .radio-item,
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: var(--bg-tertiary);
+        }
+
+        .radio-item:hover,
+        .checkbox-item:hover {
+            border-color: var(--primary);
+            background-color: var(--bg-secondary);
+        }
+
+        .radio-item input,
+        .checkbox-item input {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        html[dir="rtl"] .radio-item input,
+        html[dir="rtl"] .checkbox-item input {
+            margin-right: 0;
+            margin-left: 12px;
+        }
+
+        .radio-item input:checked ~ label,
+        .checkbox-item input:checked ~ label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* ===== LANGUAGE SELECTOR ===== */
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+            max-width: 400px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        html[dir="rtl"] .language-selector {
+            right: auto;
+            left: 20px;
+        }
+
+        .lang-btn {
+            padding: 6px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        .lang-btn:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* ===== THEME TOGGLE ===== */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 435px;
+            z-index: 1000;
+            background-color: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        html[dir="rtl"] .theme-toggle {
+            right: auto;
+            left: 435px;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        /* ===== STEP INDICATOR ===== */
+        .step-indicator {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+        }
+
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        body.light-mode .step-dot {
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+
+        .step-dot.active {
+            background-color: var(--primary);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .form-section {
+            display: none;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        .section-header {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .section-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ===== RESULT PANEL ===== */
+        .result-panel {
+            display: none;
+        }
+
+        .result-panel.active {
+            display: block;
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        /* ===== BADGE STYLES ===== */
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-primary {
+            background-color: rgba(99, 102, 241, 0.2);
+            color: var(--primary);
+        }
+
+        .badge-success {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .badge-warning {
+            background-color: rgba(245, 158, 11, 0.2);
+            color: var(--warning);
+        }
+
+        .badge-danger {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: var(--danger);
+        }
+
+        /* ===== LOADING STATE ===== */
+        .loading-container {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-container.active {
+            display: block;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        body.light-mode .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top-color: var(--primary);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 32px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 24px;
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .theme-toggle {
+                right: auto;
+                left: 20px;
+                top: auto;
+                bottom: 20px;
+            }
+            html[dir="rtl"] .theme-toggle {
+                left: auto;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .language-selector {
+                position: static;
+                margin-bottom: 20px;
+                max-width: 100%;
+            }
+
+            .theme-toggle {
+                position: static;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                width: 100%;
+                text-align: center;
+            }
+
+            html[dir="rtl"] .language-selector,
+            html[dir="rtl"] .theme-toggle {
+                left: auto;
+                right: auto;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ===== EXERCISE LIST ===== */
+        .exercise-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .exercise-item {
+            padding: 12px 16px;
+            background-color: var(--bg-tertiary);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .exercise-item:hover {
+            background-color: rgba(99, 102, 241, 0.1);
+            transform: translateX(4px);
+        }
+
+        html[dir="rtl"] .exercise-item {
+            border-left: none;
+            border-right: 3px solid var(--primary);
+        }
+
+        html[dir="rtl"] .exercise-item:hover {
+            transform: translateX(-4px);
+        }
+
+        /* ===== DIVIDER ===== */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            margin: 24px 0;
+        }
+
+        body.light-mode .divider {
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+        }
+
+        /* ===== BACK BUTTON ===== */
+        .back-navigation {
+            margin-bottom: 24px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        /* ============================================
+           ADSENSE ENGINE STYLING & ADS TRICKS
+        ============================================ */
+        .adsense-placeholder {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px dashed #6366f1;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            margin: 15px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        body.light-mode .adsense-placeholder {
+            background: #f1f5f9;
+        }
+        .adsense-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .ads-sticky-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #0f172a;
+            border-top: 2px solid #6366f1;
+            z-index: 9999;
+            padding: 5px;
+            text-align: center;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
+        }
+        /* Content Blur Trick */
+        .blur-trick-content {
+            filter: blur(4px);
+            user-select: none;
+            pointer-events: none;
+            transition: filter 0.3s ease;
+        }
+        .ad-unlock-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.6);
+            z-index: 10;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <div class="min-h-screen flex flex-col">
+        
+        <!-- TOP AD BANNER PLACEHOLDER (Leaderboard 728x90 / 320x50) -->
+        <div class="w-full flex justify-center bg-[#0b0f19] py-2 border-b border-slate-800">
+            <div class="adsense-placeholder w-full max-w-[728px] min-h-[90px] flex flex-col justify-center items-center">
+                <span class="adsense-label">Advertisement</span>
+                <!-- Google AdSense Code Injection Slot -->
+                <div class="text-xs text-slate-500">AdSense Responsive Top Banner (Auto-Optimized)</div>
+            </div>
+        </div>
+
+        <!-- Header with Controls -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between p-4 md:p-6 border-b border-opacity-10 border-white sticky top-0 z-50 bg-opacity-90 bg-[#0f172a] backdrop-blur transition-colors duration-300">
+            <div class="flex-1 mb-4 md:mb-0">
+                <h1 id="appTitle" class="text-2xl md:text-3xl font-bold">Elite Fitness Generator</h1>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-4">
+                <button class="theme-toggle btn-small btn-secondary" id="themeToggle" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="language-selector" id="languageSelector"></div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 px-4 md:px-6 py-8 max-w-4xl mx-auto w-full">
+            <!-- Form Container -->
+            <div id="formContainer" class="card fade-in">
+                <!-- Step Indicator -->
+                <div class="step-indicator" id="stepIndicator"></div>
+
+                <!-- STEP 1: Gender Selection -->
+                <div class="form-section active" id="step1">
+                    <div class="section-header">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="badge badge-primary" id="badgeStep1">Step 1</span>
+                            <h2 id="step1Title" class="section-title">Select Your Gender</h2>
+                        </div>
+                        <p id="step1Subtitle" class="section-subtitle">This helps us personalize your fitness plan</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <label class="gender-card active" data-gender="male">
+                            <input type="radio" name="gender" value="male" checked style="display: none;">
+                            <span class="gender-icon">👨</span>
+                            <span id="genderMaleLabel" class="font-semibold">Male</span>
+                        </label>
+
+                        <label class="gender-card" data-gender="female">
+                            <input type="radio" name="gender" value="female" style="display: none;">
+                            <span class="gender-icon">👩</span>
+                            <span id="genderFemaleLabel" class="font-semibold">Female</span>
+                        </label>
+                    </div>
+
+                    <!-- In-Feed Ad Slot 1 -->
+                    <div class="adsense-placeholder mt-6">
+                        <span class="adsense-label">Sponsored Links</span>
+                        <div class="text-xs text-slate-500 py-2">Native Ad Display Block</div>
+                    </div>
+
+                    <div class="flex gap-4 mt-8">
+                        <button class="btn btn-primary btn-next" id="step1Next">
+                            <span class="nextBtnText">Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Numerical Metrics -->
+                <div class="form-section" id="step2">
+                    <div class="section-header">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="badge badge-primary" id="badgeStep2">Step 2</span>
+                            <h2 id="step2Title" class="section-title">Your Body Metrics</h2>
+                        </div>
+                        <p id="step2Subtitle" class="section-subtitle">Enter your age, height, and weight for accurate results</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div>
+                            <label id="ageLabel" class="block text-sm font-semibold mb-2">Age (years)</label>
+                            <input type="number" id="ageInput" min="14" max="80" value="25" required>
+                            <small id="ageHelp" class="text-xs text-secondary mt-1 block">14 - 80 years</small>
+                        </div>
+
+                        <div>
+                            <label id="heightLabel" class="block text-sm font-semibold mb-2">Height (cm)</label>
+                            <input type="number" id="heightInput" min="100" max="230" value="175" step="1" required>
+                            <small id="heightHelp" class="text-xs text-secondary mt-1 block">100 - 230 cm</small>
+                        </div>
+
+                        <div>
+                            <label id="weightLabel" class="block text-sm font-semibold mb-2">Weight (kg)</label>
+                            <input type="number" id="weightInput" min="30" max="200" value="75" step="0.1" required>
+                            <small id="weightHelp" class="text-xs text-secondary mt-1 block">30 - 200 kg</small>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button class="btn btn-secondary btn-prev" id="step2Prev">
+                            <i class="fas fa-arrow-left"></i>
+                            <span class="prevBtnText">Back</span>
+                        </button>
+                        <button class="btn btn-primary btn-next" id="step2Next">
+                            <span class="nextBtnText">Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Environment Selection -->
+                <div class="form-section" id="step3">
+                    <div class="section-header">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="badge badge-primary" id="badgeStep3">Step 3</span>
+                            <h2 id="step3Title" class="section-title">Where Do You Exercise?</h2>
+                        </div>
+                        <p id="step3Subtitle" class="section-subtitle">Choose your primary workout location</p>
+                    </div>
+
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="location" value="home" checked>
+                            <span id="locationHomeLabel" class="ml-2">🏠 Home</span>
+                        </label>
+
+                        <label class="radio-item">
+                            <input type="radio" name="location" value="gym">
+                            <span id="locationGymLabel" class="ml-2">🏋️ Gym</span>
+                        </label>
+                    </div>
+
+                    <div class="flex gap-4 mt-8">
+                        <button class="btn btn-secondary btn-prev" id="step3Prev">
+                            <i class="fas fa-arrow-left"></i>
+                            <span class="prevBtnText">Back</span>
+                        </button>
+                        <button class="btn btn-primary btn-next" id="step3Next">
+                            <span class="nextBtnText">Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Target Muscle Zone -->
+                <div class="form-section" id="step4">
+                    <div class="section-header">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="badge badge-primary" id="badgeStep4">Step 4</span>
+                            <h2 id="step4Title" class="section-title">Target Muscle Zone</h2>
+                        </div>
+                        <p id="step4Subtitle" class="section-subtitle">Which area would you like to focus on?</p>
+                    </div>
+
+                    <div class="checkbox-group grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <label class="checkbox-item">
+                            <input type="radio" name="targetZone" value="full_body" checked>
+                            <span id="zoneFullBodyLabel" class="ml-2">🤸 Full Body</span>
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="radio" name="targetZone" value="arms">
+                            <span id="zoneArmsLabel" class="ml-2">💪 Arms</span>
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="radio" name="targetZone" value="legs">
+                            <span id="zoneLegsLabel" class="ml-2">🦵 Legs</span>
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="radio" name="targetZone" value="push">
+                            <span id="zonePushLabel" class="ml-2">🚀 Push</span>
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="radio" name="targetZone" value="pull">
+                            <span id="zonePullLabel" class="ml-2">🎯 Pull</span>
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="radio" name="targetZone" value="core">
+                            <span id="zoneCoreLabel" class="ml-2">🎲 Core</span>
+                        </label>
+                    </div>
+
+                    <div class="flex gap-4 mt-8">
+                        <button class="btn btn-secondary btn-prev" id="step4Prev">
+                            <i class="fas fa-arrow-left"></i>
+                            <span class="prevBtnText">Back</span>
+                        </button>
+                        <button class="btn btn-primary btn-next" id="step4Next">
+                            <span class="nextBtnText">Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 5: Primary Fitness Goal -->
+                <div class="form-section" id="step5">
+                    <div class="section-header">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="badge badge-primary" id="badgeStep5">Step 5</span>
+                            <h2 id="step5Title" class="section-title">Your Primary Goal</h2>
+                        </div>
+                        <p id="step5Subtitle" class="section-subtitle">What's your main fitness objective?</p>
+                    </div>
+
+                    <div class="radio-group grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <label class="radio-item">
+                            <input type="radio" name="goal" value="weight_loss">
+                            <span id="goalWeightLossLabel" class="ml-2">📉 Lose Weight</span>
+                        </label>
+
+                        <label class="radio-item">
+                            <input type="radio" name="goal" value="weight_gain">
+                            <span id="goalWeightGainLabel" class="ml-2">📈 Gain Weight</span>
+                        </label>
+
+                        <label class="radio-item">
+                            <input type="radio" name="goal" value="maintain" checked>
+                            <span id="goalMaintainLabel" class="ml-2">💪 Stay Fit</span>
+                        </label>
+                    </div>
+
+                    <!-- Strategic Pre-Generation Ad Box -->
+                    <div class="adsense-placeholder mt-6 border-amber-500/50">
+                        <span class="adsense-label">RECOMMENDED BY EXPERTS</span>
+                        <div class="text-xs text-indigo-400 font-semibold py-1">High-CTR Matching Fitness Offers Slot</div>
+                    </div>
+
+                    <div class="flex gap-4 mt-8">
+                        <button class="btn btn-secondary btn-prev" id="step5Prev">
+                            <i class="fas fa-arrow-left"></i>
+                            <span class="prevBtnText">Back</span>
+                        </button>
+                        <button class="btn btn-primary" id="generateBtn" style="flex: 1; justify-content: center;">
+                            <span id="generateBtnText">Generate My Plan</span>
+                            <i class="fas fa-magic"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingContainer" class="loading-container card pulse-animation">
+                <div class="loading-spinner"></div>
+                <p id="loadingText" class="mt-4 text-secondary">Analyzing your profile...</p>
+                
+                <!-- Trick 1: Display Interstitial Ad during fake analysis waiting window -->
+                <div class="adsense-placeholder max-w-[336px] mx-auto mt-6">
+                    <span class="adsense-label">Loading Sponsor Content</span>
+                    <div class="w-[300px] h-[250px] bg-slate-800 flex items-center justify-center text-xs text-slate-400 mx-auto">
+                        300x250 Medium Rectangle Ad Slot
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Panel -->
+            <div id="resultsPanel" class="result-panel">
+                <div class="back-navigation">
+                    <button class="back-btn" id="backBtn">
+                        <i class="fas fa-arrow-left"></i>
+                        <span id="backBtnText">Modify Plan</span>
+                    </button>
+                </div>
+
+                <!-- User Profile Card -->
+                <div class="card mb-6">
+                    <h2 id="profileTitle" class="text-2xl font-bold mb-6">Your Profile Summary</h2>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div>
+                            <p id="profileGenderLabel" class="text-sm text-secondary mb-2">Gender</p>
+                            <p id="profileGenderValue" class="text-lg font-semibold">Male</p>
+                        </div>
+
+                        <div>
+                            <p id="profileAgeLabel" class="text-sm text-secondary mb-2">Age Group</p>
+                            <p id="profileAgeValue" class="text-lg font-semibold">Young Adult</p>
+                        </div>
+
+                        <div>
+                            <p id="profileBMILabel" class="text-sm text-secondary mb-2">BMI Status</p>
+                            <div id="profileBMIValue" class="badge badge-success">Normal (23.5)</div>
+                        </div>
+
+                        <div>
+                            <p id="profileGoalLabel" class="text-sm text-secondary mb-2">Goal</p>
+                            <p id="profileGoalValue" class="text-lg font-semibold">Stay Fit</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle Page Banner (High Visibility Screen Break) -->
+                <div class="adsense-placeholder max-w-full my-6">
+                    <span class="adsense-label">Advertisement</span>
+                    <div class="text-xs text-slate-500 py-3">Matched Content / AdSense Horizontal Unit</div>
+                </div>
+
+                <!-- Workout Plan Card -->
+                <div class="card mb-6">
+                    <h2 id="planTitle" class="text-2xl font-bold mb-2">Your Personalized Workout Plan</h2>
+                    <p id="planDuration" class="text-lg font-semibold text-primary mb-6">6 Weeks Program</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 id="workoutScheduleTitle" class="text-lg font-bold mb-4">Workout Schedule</h3>
+                            <div id="workoutSchedule" class="exercise-list"></div>
+                        </div>
+
+                        <div>
+                            <h3 id="workoutNotesTitle" class="text-lg font-bold mb-4">Important Notes</h3>
+                            <ul id="workoutNotes" class="space-y-2">
+                                <li class="flex gap-2">
+                                    <span>•</span>
+                                    <span id="noteRest">Rest 48 hours between same muscle group sessions</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nutrition Card -->
+                <div class="card mb-6">
+                    <h2 id="nutritionTitle" class="text-2xl font-bold mb-6">Nutrition Recommendations</h2>
+                    
+                    <div id="nutritionAdvice" class="space-y-4">
+                        <div class="p-4 bg-slate-700/50 rounded-lg">
+                            <p id="dietAdviceContent">Focus on whole foods, adequate protein intake, and maintain consistent meal timing.</p>
+                        </div>
+                    </div>
+
+                    <h3 id="nutritionGuidelinesTitle" class="text-lg font-bold mt-6 mb-4">Daily Guidelines</h3>
+                    <div id="nutritionGuidelines" class="exercise-list"></div>
+                </div>
+
+                <!-- Tips Card with Blur Click Trap Trick -->
+                <div class="card relative overflow-hidden">
+                    <h2 id="tipsTitle" class="text-2xl font-bold mb-6">Pro Tips for Success</h2>
+                    
+                    <!-- Trick 2: Content Blurry Overlay for Premium-like layout feel (But free ad unlock trigger) -->
+                    <div id="tipsOverlay" class="ad-unlock-overlay">
+                        <p class="text-sm text-center px-4 mb-2 font-semibold">Clicking below supports the platform & reveals your secret fitness strategy</p>
+                        <div class="w-full max-w-[300px] h-[50px] bg-indigo-600/90 rounded border border-white/20 flex items-center justify-center cursor-pointer font-bold text-xs hover:bg-indigo-500 transition-all shadow-lg" onclick="triggerAdClickSim()">
+                             🔓 UNLOCK PREMIUM SECRETS BY SPONSOR
+                        </div>
+                    </div>
+
+                    <div id="tipsList" class="space-y-3 blur-trick-content">
+                        <!-- Loaded by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="mt-8 flex gap-4">
+                    <button class="btn btn-primary" id="downloadBtn" style="flex: 1; justify-content: center;">
+                        <i class="fas fa-download"></i>
+                        <span id="downloadBtnText">Download Plan (PDF)</span>
+                    </button>
+                    <button class="btn btn-secondary" id="regenerateBtn" style="flex: 1; justify-content: center;">
+                        <i class="fas fa-redo"></i>
+                        <span id="regenerateBtnText">Try Different Plan</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="border-t border-opacity-10 border-white p-6 text-center text-sm text-secondary mt-auto bg-[#0f172a] transition-colors duration-300">
+            <p id="footerText">© 2024 Elite Fitness Generator. All rights reserved. Made for performance.</p>
+        </footer>
+    </div>
+
+    <!-- STICKY ANCHORED AD BANNER (Trick 3: Safe, persistent bottom layout anchor) -->
+    <div class="ads-sticky-bottom">
+        <span class="adsense-label">Advertisement</span>
+        <div class="text-xs text-indigo-300">AdSense Anchor Banner Slot (Always Visible 320x50 Mobile friendly)</div>
+    </div>
+
+    <script>
+        // ============================================
+        // COMPREHENSIVE 12-LANGUAGE LOCALIZATION SYSTEM
+        // ============================================
+        const i18nSystem = {
+            supportedLanguages: ['en', 'az', 'tr', 'ru', 'es', 'fr', 'de', 'it', 'pt', 'ar', 'zh', 'ja'],
+            currentLanguage: 'en',
+            rtlLanguages: ['ar'],
+
+            dictionary: {
+                en: {
+                    appTitle: 'Elite Fitness Generator',
+                    nextBtnText: 'Next',
+                    prevBtnText: 'Back',
+                    generateBtnText: 'Generate My Plan',
+                    backBtnText: 'Modify Plan',
+                    downloadBtnText: 'Download Plan (PDF)',
+                    regenerateBtnText: 'Try Different Plan',
+                    loadingText: 'Analyzing your profile...',
+                    footerText: '© 2024 Elite Fitness Generator. All rights reserved. Made for performance.',
+                    step1Title: 'Select Your Gender',
+                    step1Subtitle: 'This helps us personalize your fitness plan',
+                    genderMaleLabel: 'Male',
+                    genderFemaleLabel: 'Female',
+                    step2Title: 'Your Body Metrics',
+                    step2Subtitle: 'Enter your age, height, and weight for accurate results',
+                    ageLabel: 'Age (years)',
+                    heightLabel: 'Height (cm)',
+                    weightLabel: 'Weight (kg)',
+                    ageHelp: '14 - 80 years',
+                    heightHelp: '100 - 230 cm',
+                    weightHelp: '30 - 200 kg',
+                    step3Title: 'Where Do You Exercise?',
+                    step3Subtitle: 'Choose your primary workout location',
+                    locationHomeLabel: '🏠 Home',
+                    locationGymLabel: '🏋️ Gym',
+                    step4Title: 'Target Muscle Zone',
+                    step4Subtitle: 'Which area would you like to focus on?',
+                    zoneFullBodyLabel: '🤸 Full Body',
+                    zoneArmsLabel: '💪 Arms',
+                    zoneLegsLabel: '🦵 Legs',
+                    zonePushLabel: '🚀 Push',
+                    zonePullLabel: '🎯 Pull',
+                    zoneCoreLabel: '🎲 Core',
+                    step5Title: 'Your Primary Goal',
+                    step5Subtitle: "What's your main fitness objective?",
+                    goalWeightLossLabel: '📉 Lose Weight',
+                    goalWeightGainLabel: '📈 Gain Weight',
+                    goalMaintainLabel: '💪 Stay Fit',
+                    profileTitle: 'Your Profile Summary',
+                    profileGenderLabel: 'Gender',
+                    profileAgeLabel: 'Age Group',
+                    profileBMILabel: 'BMI Status',
+                    profileGoalLabel: 'Goal',
+                    planTitle: 'Your Personalized Workout Plan',
+                    workoutScheduleTitle: 'Workout Schedule',
+                    workoutNotesTitle: 'Important Notes',
+                    nutritionTitle: 'Nutrition Recommendations',
+                    nutritionGuidelinesTitle: 'Daily Guidelines',
+                    tipsTitle: 'Pro Tips for Success',
+                    teen: 'Teen (14-17)',
+                    youngAdult: 'Young Adult (18-25)',
+                    adult: 'Adult (26-45)',
+                    senior: 'Senior (46-80)',
+                    underweight: 'Underweight',
+                    normal: 'Normal',
+                    overweight: 'Overweight',
+                    obese: 'Obese',
+                    weightLoss: 'Weight Loss',
+                    weightGain: 'Weight Gain',
+                    maintain: 'Maintain Fitness',
+                    badgeStep: 'Step'
+                },
+                az: {
+                    appTitle: 'Elit Fitness Generatoru',
+                    nextBtnText: 'Sonrakı',
+                    prevBtnText: 'Geri',
+                    generateBtnText: 'Planımı Yaradın',
+                    backBtnText: 'Planı Dəyişdirin',
+                    downloadBtnText: 'Planı Yükləyin (PDF)',
+                    regenerateBtnText: 'Fərqli Plan Sınayın',
+                    loadingText: 'Profiliniz analiz edilir...',
+                    footerText: '© 2024 Elit Fitness Generatoru. Bütün Hüquqlar Qorunur. Performans üçün hazırlanmışdır.',
+                    step1Title: 'Cinsiyyətinizi Seçin',
+                    step1Subtitle: 'Bu, fitness planınızı şəxsiyləşdirməyə kömək edir',
+                    genderMaleLabel: 'Kişi',
+                    genderFemaleLabel: 'Qadın',
+                    step2Title: 'Sizin Bədən Metrikası',
+                    step2Subtitle: 'Dəqiq nəticələr üçün yaş, boy və çəkini daxil edin',
+                    ageLabel: 'Yaş (illər)',
+                    heightLabel: 'Boy (sm)',
+                    weightLabel: 'Çəki (kq)',
+                    ageHelp: '14 - 80 il',
+                    heightHelp: '100 - 230 sm',
+                    weightHelp: '30 - 200 kq',
+                    step3Title: 'Siz Harada Məşq Edirsiniz?',
+                    step3Subtitle: 'Birincil məşq yerini seçin',
+                    locationHomeLabel: '🏠 Ev',
+                    locationGymLabel: '🏋️ Gym',
+                    step4Title: 'Hədəf Əzələ Zonu',
+                    step4Subtitle: 'Hansı sahəyə diqqət vermək istərsiniz?',
+                    zoneFullBodyLabel: '🤸 Tam Bədən',
+                    zoneArmsLabel: '💪 Qollar',
+                    zoneLegsLabel: '🦵 Ayaqlar',
+                    zonePushLabel: '🚀 İtirmə (Push)',
+                    zonePullLabel: '🎯 Dartma (Pull)',
+                    zoneCoreLabel: '🎲 Kor (Core)',
+                    step5Title: 'Sizin Birincil Məqsədiniz',
+                    step5Subtitle: 'Sizin əsas fitness hədəfi nədir?',
+                    goalWeightLossLabel: '📉 Çəki Azaldın',
+                    goalWeightGainLabel: '📈 Çəki Artırın',
+                    goalMaintainLabel: '💪 Sağlam Qalın',
+                    profileTitle: 'Sizin Profil Xülasəsi',
+                    profileGenderLabel: 'Cinsi',
+                    profileAgeLabel: 'Yaş Qrupu',
+                    profileBMILabel: 'BMI Statusu',
+                    profileGoalLabel: 'Məqsəd',
+                    planTitle: 'Sizin Şəxsiyləşdirilmiş Məşq Planı',
+                    workoutScheduleTitle: 'Məşq Cədvəli',
+                    workoutNotesTitle: 'Mühüm Qeydlər',
+                    nutritionTitle: 'Qidalanma Tövsiyələri',
+                    nutritionGuidelinesTitle: 'Günlük Təlimatlar',
+                    tipsTitle: 'Uğur üçün Pro Məsləhətlər',
+                    teen: 'Yeniyetmə (14-17)',
+                    youngAdult: 'Gənc Böyük (18-25)',
+                    adult: 'Böyük (26-45)',
+                    senior: 'Yaşlı (46-80)',
+                    underweight: 'Az çəkili',
+                    normal: 'Normal',
+                    overweight: 'Artıq çəkili',
+                    obese: 'Obez',
+                    weightLoss: 'Çəki Itkisi',
+                    weightGain: 'Çəki Artımı',
+                    maintain: 'Formda Qalın',
+                    badgeStep: 'Addım'
+                },
+                tr: {
+                    appTitle: 'Elite Fitness Üreticisi',
+                    nextBtnText: 'İleri',
+                    prevBtnText: 'Geri',
+                    generateBtnText: 'Planımı Oluştur',
+                    backBtnText: 'Planı Değiştir',
+                    downloadBtnText: 'Planı İndir (PDF)',
+                    regenerateBtnText: 'Farklı Plan Dene',
+                    loadingText: 'Profiliniz analiz ediliyor...',
+                    footerText: '© 2024 Elite Fitness Üreticisi. Tüm Hakları Saklıdır. Performans için tasarlanmıştır.',
+                    step1Title: 'Cinsiyetinizi Seçin',
+                    step1Subtitle: 'Bu, fitness planınızı kişiselleştirmeye yardımcı olur',
+                    genderMaleLabel: 'Erkek',
+                    genderFemaleLabel: 'Kadın',
+                    step2Title: 'Vücut Metrikleriniz',
+                    step2Subtitle: 'Doğru sonuçlar için yaş, boy ve kilosu girin',
+                    ageLabel: 'Yaş (yıl)',
+                    heightLabel: 'Boy (cm)',
+                    weightLabel: 'Kilo (kg)',
+                    ageHelp: '14 - 80 yaş',
+                    heightHelp: '100 - 230 cm',
+                    weightHelp: '30 - 200 kg',
+                    step3Title: 'Nerede Egzersiz Yapıyorsunuz?',
+                    step3Subtitle: 'Birincil antrenman konumunuzu seçin',
+                    locationHomeLabel: '🏠 Ev',
+                    locationGymLabel: '🏋️ Spor Salonu',
+                    step4Title: 'Hedef Kas Bölgesi',
+                    step4Subtitle: 'Hangi alana odaklanmak istersiniz?',
+                    zoneFullBodyLabel: '🤸 Tüm Vücut',
+                    zoneArmsLabel: '💪 Kollar',
+                    zoneLegsLabel: '🦵 Bacaklar',
+                    zonePushLabel: '🚀 İtiş (Push)',
+                    zonePullLabel: '🎯 Çekiş (Pull)',
+                    zoneCoreLabel: '🎲 Karın (Core)',
+                    step5Title: 'Birincil Hedefiniz',
+                    step5Subtitle: 'Temel fitness hedefniz nedir?',
+                    goalWeightLossLabel: '📉 Kilo Verin',
+                    goalWeightGainLabel: '📈 Kilo Alın',
+                    goalMaintainLabel: '💪 Fit Kalın',
+                    profileTitle: 'Profil Özetiniz',
+                    profileGenderLabel: 'Cinsiyet',
+                    profileAgeLabel: 'Yaş Grubu',
+                    profileBMILabel: 'BMI Durumu',
+                    profileGoalLabel: 'Hedef',
+                    planTitle: 'Kişiselleştirilmiş Antrenman Planınız',
+                    workoutScheduleTitle: 'Antrenman Takvimi',
+                    workoutNotesTitle: 'Önemli Notlar',
+                    nutritionTitle: 'Beslenme Önerileri',
+                    nutritionGuidelinesTitle: 'Günlük Yönergeler',
+                    tipsTitle: 'Başarı için Pro İpuçları',
+                    teen: 'Genç (14-17)',
+                    youngAdult: 'Genç Yetişkin (18-25)',
+                    adult: 'Yetişkin (26-45)',
+                    senior: 'Yaşlı (46-80)',
+                    underweight: 'Zayıf',
+                    normal: 'Normal',
+                    overweight: 'Kilolu',
+                    obese: 'Obez',
+                    weightLoss: 'Kilo Kaybı',
+                    weightGain: 'Kilo Alımı',
+                    maintain: 'Fit Kalın',
+                    badgeStep: 'Adım'
+                },
+                ru: {
+                    appTitle: 'Элитный генератор фитнеса',
+                    nextBtnText: 'Далее',
+                    prevBtnText: 'Назад',
+                    generateBtnText: 'Создать мой plan',
+                    backBtnText: 'Изменить план',
+                    downloadBtnText: 'Загрузить план (PDF)',
+                    regenerateBtnText: 'Попробовать другой план',
+                    loadingText: 'Анализ вашего профиля...',
+                    footerText: '© 2024 Элитный генератор фитнеса. Все права защищены.',
+                    step1Title: 'Выберите ваш пол',
+                    genderMaleLabel: 'Мужчина',
+                    genderFemaleLabel: 'Женщина',
+                    step2Title: 'Метрики вашего тела',
+                    ageLabel: 'Возраст',
+                    heightLabel: 'Рост (см)',
+                    weightLabel: 'Вес (кг)',
+                    locationHomeLabel: '🏠 Дома',
+                    locationGymLabel: '🏋️ Спортзал',
+                    zoneFullBodyLabel: '🤸 Все тело',
+                    zoneArmsLabel: '💪 Руки',
+                    zoneLegsLabel: '🦵 Ноги',
+                    goalWeightLossLabel: '📉 Похудеть',
+                    goalWeightGainLabel: '📈 Набрать вес',
+                    goalMaintainLabel: '💪 Быть в форме',
+                    profileTitle: 'Профиль',
+                    teen: 'Подросток', youngAdult: 'Молодежь', adult: 'Взрослый', senior: 'Пожилой',
+                    underweight: 'Дефицит', normal: 'Норма', overweight: 'Избыток', obese: 'Ожирение',
+                    badgeStep: 'Шаг'
+                },
+                es: { appTitle: 'Generador Fitness Élite', nextBtnText: 'Siguiente', prevBtnText: 'Atrás', generateBtnText: 'Generar Plan', backBtnText: 'Modificar', downloadBtnText: 'Descargar PDF', regenerateBtnText: 'Otro Plan', step1Title: 'Género', genderMaleLabel: 'Hombre', genderFemaleLabel: 'Mujer', step2Title: 'Métricas', ageLabel: 'Edad', heightLabel: 'Altura', weightLabel: 'Peso', locationHomeLabel: '🏠 Casa', locationGymLabel: '🏋️ Gimnasio', zoneFullBodyLabel: '🤸 Todo el Cuerpo', goalWeightLossLabel: '📉 Perder Peso', goalWeightGainLabel: '📈 Ganar Peso', goalMaintainLabel: '💪 Estar En Forma', profileTitle: 'Resumen', teen: 'Joven', youngAdult: 'Adulto Joven', adult: 'Adulto', senior: 'Senior', underweight: 'Bajo peso', normal: 'Normal', overweight: 'Sobrepeso', obese: 'Obesidad', badgeStep: 'Paso' },
+                fr: { appTitle: 'Générateur Fitness Élite', nextBtnText: 'Suivant', prevBtnText: 'Retour', generateBtnText: 'Générer le Plan', backBtnText: 'Modifier', downloadBtnText: 'Télécharger PDF', regenerateBtnText: 'Autre Plan', step1Title: 'Sexe', genderMaleLabel: 'Homme', genderFemaleLabel: 'Femme', step2Title: 'Métriques', ageLabel: 'Âge', heightLabel: 'Taille', weightLabel: 'Poids', locationHomeLabel: '🏠 Maison', locationGymLabel: '🏋️ Salle', zoneFullBodyLabel: '🤸 Tout le corps', goalWeightLossLabel: '📉 Perdre du Poids', goalWeightGainLabel: '📈 Prendre du Poids', goalMaintainLabel: '💪 Rester en Forme', profileTitle: 'Résumé', teen: 'Ado', youngAdult: 'Jeune Adulte', adult: 'Adulte', senior: 'Senior', underweight: 'Maigreur', normal: 'Normal', overweight: 'Surpoids', obese: 'Obèse', badgeStep: 'Étape' },
+                de: { appTitle: 'Elite Fitness Generator', nextBtnText: 'Weiter', prevBtnText: 'Zurück', generateBtnText: 'Plan Erstellen', backBtnText: 'Ändern', downloadBtnText: 'PDF Herunterladen', regenerateBtnText: 'Anderer Plan', step1Title: 'Geschlecht', genderMaleLabel: 'Mann', genderFemaleLabel: 'Frau', step2Title: 'Metriken', ageLabel: 'Alter', heightLabel: 'Größe', weightLabel: 'Gewicht', locationHomeLabel: '🏠 Hause', locationGymLabel: '🏋️ Studio', zoneFullBodyLabel: '🤸 Ganzkörper', goalWeightLossLabel: '📉 Abnehmen', goalWeightGainLabel: '📈 Zunehmen', goalMaintainLabel: '💪 Fit Bleiben', profileTitle: 'Profil', teen: 'Teenie', youngAdult: 'Junger Erwachsener', adult: 'Erwachsener', senior: 'Senior', underweight: 'Untergewicht', normal: 'Normal', overweight: 'Übergewicht', obese: 'Adipositas', badgeStep: 'Schritt' },
+                it: { appTitle: 'Generatore Fitness Elite', nextBtnText: 'Avanti', prevBtnText: 'Indietro', generateBtnText: 'Genera Piano', backBtnText: 'Modifica', downloadBtnText: 'Scarica PDF', regenerateBtnText: 'Altro Piano', step1Title: 'Genere', genderMaleLabel: 'Uomo', genderFemaleLabel: 'Donna', step2Title: 'Metriche', ageLabel: 'Età', heightLabel: 'Altezza', weightLabel: 'Peso', locationHomeLabel: '🏠 Casa', locationGymLabel: '🏋️ Palestra', zoneFullBodyLabel: '🤸 Corpo Intero', goalWeightLossLabel: '📉 Perdere Peso', goalWeightGainLabel: '📈 Prendere Peso', goalMaintainLabel: '💪 Restare in Forma', profileTitle: 'Riepilogo', teen: 'Teen', youngAdult: 'Giovane Adulto', adult: 'Adulto', senior: 'Senior', underweight: 'Sottopeso', normal: 'Normale', overweight: 'Sovrappeso', obese: 'Obeso', badgeStep: 'Passo' },
+                pt: { appTitle: 'Gerador Fitness Elite', nextBtnText: 'Próximo', prevBtnText: 'Voltar', generateBtnText: 'Gerar Plano', backBtnText: 'Modificar', downloadBtnText: 'Baixar PDF', regenerateBtnText: 'Outro Plano', step1Title: 'Gênero', genderMaleLabel: 'Hombre', genderFemaleLabel: 'Mulher', step2Title: 'Métricas', ageLabel: 'Idade', heightLabel: 'Altura', weightLabel: 'Peso', locationHomeLabel: '🏠 Casa', locationGymLabel: '🏋️ Academia', zoneFullBodyLabel: '🤸 Corpo Inteiro', goalWeightLossLabel: '📉 Perder Peso', goalWeightGainLabel: '📈 Ganhar Peso', goalMaintainLabel: '💪 Manter-se Fit', profileTitle: 'Resumo', teen: 'Teen', youngAdult: 'Adulto Jovem', adult: 'Adulto', senior: 'Sênior', underweight: 'Abaixo do peso', normal: 'Normal', overweight: 'Sobrepeso', obese: 'Obeso', badgeStep: 'Passo' },
+                ar: { appTitle: 'مولد اللياقة البدنية النخبة', nextBtnText: 'التالي', prevBtnText: 'العودة', generateBtnText: 'إنشاء خطتي', backBtnText: 'تعديل الخطة', downloadBtnText: 'تحميل (PDF)', regenerateBtnText: 'خطة أخرى', step1Title: 'اختر جنسك', genderMaleLabel: 'ذكر', genderFemaleLabel: 'أنثى', step2Title: 'قياسات جسمك', ageLabel: 'العمر', heightLabel: 'الطول', weightLabel: 'الوزن', locationHomeLabel: '🏠 البيت', locationGymLabel: '🏋️ صالة الألعاب', zoneFullBodyLabel: '🤸 كامل الجسم', goalWeightLossLabel: '📉 خسارة وزن', goalWeightGainLabel: '📈 زيادة وزن', goalMaintainLabel: '💪 البقاء لائقاً', profileTitle: 'ملخص الملف', teen: 'مراهق', youngAdult: 'شاب', adult: 'بالغ', senior: 'مسن', underweight: 'تحت الوزن', normal: 'طبيعي', overweight: 'وزن زائد', obese: 'سمنة', badgeStep: 'خطوة' },
+                zh: { appTitle: '精英健身生成器', nextBtnText: '下一步', prevBtnText: '返回', generateBtnText: '生成计划', backBtnText: '修改', downloadBtnText: '下载 PDF', regenerateBtnText: '其他计划', step1Title: '性别', genderMaleLabel: '男性', genderFemaleLabel: '女性', step2Title: '身体指标', ageLabel: '年龄', heightLabel: '身高', weightLabel: '体重', locationHomeLabel: '🏠 家里', locationGymLabel: '🏋️ 健身房', zoneFullBodyLabel: '🤸 全身', goalWeightLossLabel: '📉 减肥', goalWeightGainLabel: '📈 增重', goalMaintainLabel: '💪 保持身材', profileTitle: '概要', teen: '青少年', youngAdult: '青年', adult: '中年', senior: '老年', underweight: '体重不足', normal: '正常', overweight: '超重', obese: '肥胖', badgeStep: '步骤' },
+                ja: {
+                    appTitle: 'エリートフィットネス生成器',
+                    nextBtnText: '次へ',
+                    prevBtnText: '戻る',
+                    generateBtnText: '私のプランを生成',
+                    backBtnText: 'プランを変更',
+                    downloadBtnText: 'プランをダウンロード (PDF)',
+                    regenerateBtnText: '別のプランを試す',
+                    loadingText: 'プロフィールを分析中...',
+                    footerText: '© 2024 エリートフィットネス生成器。',
+                    step1Title: '性別を選択',
+                    genderMaleLabel: '男性',
+                    genderFemaleLabel: '女性',
+                    step2Title: 'あなたの身体測定値',
+                    ageLabel: '年齢（才）',
+                    heightLabel: '身長（cm）',
+                    weightLabel: '体重（kg）',
+                    locationHomeLabel: '🏠 自宅',
+                    locationGymLabel: '🏋️ ジム',
+                    zoneFullBodyLabel: '🤸 全身',
+                    goalWeightLossLabel: '📉 減量',
+                    goalWeightGainLabel: '📈 増量',
+                    goalMaintainLabel: '💪 フィット維持',
+                    profileTitle: 'プロフィールの概要',
+                    teen: 'ティーン', youngAdult: '若い成人', adult: '成人', senior: 'シニア',
+                    underweight: '体重不足', normal: '標準', overweight: '太り過ぎ', obese: '肥胖',
+                    badgeStep: 'ステップ'
+                }
+            }
+        };
+
+        // ============================================
+        // APPLICATION STATE MANAGEMENT
+        // ============================================
+        const appState = {
+            currentStep: 1,
+            darkMode: true,
+            gender: 'male',
+            age: 25,
+            height: 175,
+            weight: 75,
+            location: 'home',
+            targetZone: 'full_body',
+            goal: 'maintain',
+            bmi: 0,
+            ageGroup: 'young_adult',
+            bmiStatus: 'normal',
+            
+            calculateBMI() {
+                const heightInMeters = this.height / 100;
+                this.bmi = this.weight / (heightInMeters * heightInMeters);
+                return this.bmi;
+            },
+            
+            getAgeGroup() {
+                if (this.age < 18) this.ageGroup = 'teen';
+                else if (this.age < 26) this.ageGroup = 'young_adult';
+                else if (this.age < 46) this.ageGroup = 'adult';
+                else this.ageGroup = 'senior';
+                return this.ageGroup;
+            },
+            
+            getBMIStatus() {
+                const b = this.calculateBMI();
+                if (b < 18.5) this.bmiStatus = 'underweight';
+                else if (b < 25) this.bmiStatus = 'normal';
+                else if (b < 30) this.bmiStatus = 'overweight';
+                else this.bmiStatus = 'obese';
+                return this.bmiStatus;
+            }
+        };
+
+        // ============================================
+        // COMPREHENSIVE WORKOUT DATABASE
+        // ============================================
+        const fitnessDatabase = [
+            {
+                planId: "m_youngadult_normal_home_fullbody_maintain",
+                metadata: { gender: "male", ageGroup: "young_adult", bmiStatus: "normal", location: "home", targetZone: "full_body", goal: "maintain" },
+                translations: {
+                    en: {
+                        title: "Home Full Body Strength & Endurance",
+                        duration: "4 Weeks Program",
+                        dietAdvice: "Focus on balanced macronutrients: 30% protein, 40% carbs, 30% fats. Eat 3-4 meals daily with proper hydration.",
+                        workoutSchedule: [
+                            { day: "Monday", exercises: ["Bodyweight Squats: 4x15", "Push-ups: 4x12", "Jump Lunges: 3x10 each", "Plank Hold: 3x45 sec"] },
+                            { day: "Wednesday", exercises: ["Mountain Climbers: 3x20", "Pike Push-ups: 3x12", "Bulgarian Split Squats: 3x10 each", "High Knees: 3x30 sec"] },
+                            { day: "Friday", exercises: ["Burpees: 3x10", "Diamond Push-ups: 3x10", "Single-Leg Deadlift: 3x8 each", "Wall Sit: 3x30 sec"] }
+                        ],
+                        nutritionGuidelines: ["Protein intake: 1.6-2g per kg bodyweight", "Carbs post-workout for recovery", "2.5-3 liters water daily", "Limit processed foods", "Include vegetables in every meal"],
+                        proTips: ["Warm up 5 minutes before each session", "Rest 60-90 seconds between sets", "Progressive increase reps weekly", "Track your workouts in a journal"]
+                    },
+                    az: {
+                        title: "Ev Tam Bədən Gücü və Davamlılığı",
+                        duration: "4 Həftəlik Proqram",
+                        dietAdvice: "Tarazlaşdırılmış makronutrientlərə diqqət yetirin: 30% protein, 40% karbohidrat, 30% yağ. Gündə 3-4 dəfə qidalanın.",
+                        workoutSchedule: [
+                            { day: "Bazar ertəsi", exercises: ["Bədən çəkisi ilə Squat: 4x15", "Şınav (Push-ups): 4x12", "Sıçrayışla Lunges: 3x10 hər ayaq", "Plank: 3x45 san"] },
+                            { day: "Çərşənbə", exercises: ["Mountain Climbers: 3x20", "Pike Push-ups: 3x12", "Bolqar Split Squat: 3x10 hər ayaq", "High Knees: 3x30 san"] },
+                            { day: "Cümə", exercises: ["Burpee: 3x10", "Almaz Şınav (Diamond): 3x10", "Tək ayaq üstə Deadlift: 3x8", "Divarda Oturma (Wall Sit): 3x30 san"] }
+                        ],
+                        nutritionGuidelines: ["Protein qəbulu: çəkinin hər kq-na 1.6-2q", "Məşqdən sonra bərpa üçün karbohidrat", "Gündə 2.5-3 litr su", "Fastfood və şəkəri azaldın", "Hər qidalanmaya tərəvəz əlavə edin"],
+                        proTips: ["Məşqdən qabaq 5 dəqiqə qızışın", "Setlər arası 60-90 saniyə dincəlin", "Təkrarları hər həftə artırın", "Məşqlərinizi qeyd dəftərinə yazın"]
+                    },
+                    tr: {
+                        title: "Ev Tüm Vücut Gücü ve Dayanıklılık",
+                        duration: "4 Haftalık Program",
+                        dietAdvice: "Dengeli makro besinlere odaklanın: %30 protein, %40 karbonhidrat, %30 yağ. Günde 3-4 öğün tüketin.",
+                        workoutSchedule: [
+                            { day: "Pazartesi", exercises: ["Squat: 4x15", "Şınav: 4x12", "Sıçramalı Lunge: 3x10", "Plank: 3x45 sn"] },
+                            { day: "Çarşamba", exercises: ["Mountain Climber: 3x20", "Pike Şınav: 3x12", "Bulgarian Split Squat: 3x10", "High Knees: 3x30 sn"] },
+                            { day: "Cuma", exercises: ["Burpee: 3x10", "Diamond Şınav: 3x10", "Tek Bacak Deadlift: 3x8", "Wall Sit: 3x30 sn"] }
+                        ],
+                        nutritionGuidelines: ["Protein alımı: kg başına 1.6-2g", "Antrenman sonrası karbonhidrat", "Günde 2.5-3 litre su", "İşlenmiş gıdalardan kaçının", "Her öğüne sebze ekleyin"],
+                        proTips: ["Egzersizden önce 5 dk ısının", "Setler arası 60-90 sn dinlenin", "Tekrarları kademeli artırın", "Gelişiminizi günlük tutarak izleyin"]
+                    }
+                }
+            }
+        ];
+
+        // Fallback Logic Generator for Missing Combinations
+        function generateFallbackPlan(gender, ageGroup, bmiStatus, location, targetZone, goal, lang) {
+            const isLoss = goal === 'weight_loss';
+            const isGain = goal === 'weight_gain';
+            
+            const titles = {
+                en: `Customized ${location.toUpperCase()} ${targetZone.replace('_', ' ')} Plan`,
+                az: `Fərdi ${location === 'home' ? 'Ev' : 'Zal'} ${targetZone === 'full_body' ? 'Tam Bədən' : 'Hədəf'} Proqramı`,
+                tr: `Özel ${location === 'home' ? 'Ev' : 'Salon'} ${targetZone === 'full_body' ? 'Tüm Vücut' : 'Bölgesel'} Planı`
+            };
+
+            const advice = {
+                en: isLoss ? "Focus on high-intensity intervals and a 300kcal deficit." : isGain ? "Focus on progressive overload and surplus calories." : "Maintain protein intake and balanced macronutrients.",
+                az: isLoss ? "Yüksək intensivlikli interval məşqlərinə və 300kkal kalori defisitinə üstünlük verin." : isGain ? "Proqressiv yüklənməyə və artıq kalori qəbuluna diqqət yetirin." : "Protein qəbulunu və balanslı makronutrientləri qoruyun.",
+                tr: isLoss ? "Yüksek yoğunluklu interval antrenmanlara ve 300kcal kalori açığına odaklanın." : isGain ? "Progresif yüklemeye ve kalori fazlasına odaklanın." : "Protein alımını ve dengeli makro besinleri koruyun."
+            };
+
+            const l = i18nSystem.dictionary[lang] ? lang : 'en';
+
+            return {
+                title: titles[l] || titles['en'],
+                duration: "6 Weeks Elite Program",
+                dietAdvice: advice[l] || advice['en'],
+                workoutSchedule: [
+                    { day: l === 'az' ? 'Bazar ertəsi' : l === 'tr' ? 'Pazartesi' : 'Monday', exercises: [location === 'home' ? "Push-ups: 4x15" : "Bench Press: 4x10", "Squats: 4x20", "Plank: 3x60s"] },
+                    { day: l === 'az' ? 'Çərşənbə' : l === 'tr' ? 'Çarşamba' : 'Wednesday', exercises: [location === 'home' ? "Pike Pushups: 3x12" : "Overhead Press: 4x10", "Lunges: 3x15", "Abs Crunch: 3x25"] },
+                    { day: l === 'az' ? 'Cümə' : l === 'tr' ? 'Cuma' : 'Friday', exercises: [location === 'home' ? "Burpees: 4x10" : "Deadlift: 4x8", "Glute Bridges: 4x15", "Side Plank: 3x40s"] }
+                ],
+                nutritionGuidelines: l === 'az' ? ["Kifayət qədər su qəbulu", "Gündəlik protein hədəfi", "Təmiz qidalanma"] : ["Hydration is key", "Hit your protein target", "Eat whole clean foods"],
+                proTips: l === 'az' ? ["Hər hərəkəti tam nizamla edin", "Yuxunuza diqqət edin"] : ["Execute with perfect form", "Prioritize sleep recovery"]
+            };
+        }
+
+        // ============================================
+        // CORE UI & EVENT NAVIGATION LOGIC
+        // ============================================
+        document.addEventListener("DOMContentLoaded", () => {
+            initLanguages();
+            buildStepDots();
+            setupFormNavigation();
+            setupGenderCards();
+            setupThemeToggle();
+            setupGenerateMechanism();
+            setupResultsActions();
+        });
+
+        // 1. Step Dots Builder
+        function buildStepDots() {
+            const container = document.getElementById("stepIndicator");
+            container.innerHTML = "";
+            for (let i = 1; i <= 5; i++) {
+                const dot = document.createElement("div");
+                dot.className = `step-dot ${i === 1 ? 'active' : ''}`;
+                dot.id = `stepDot_${i}`;
+                container.appendChild(dot);
+            }
+        }
+
+        // Update Steps UI
+        function updateStepsUI() {
+            document.querySelectorAll(".form-section").forEach((sec, idx) => {
+                if (idx + 1 === appState.currentStep) {
+                    sec.classList.add("active");
+                } else {
+                    sec.classList.remove("active");
+                }
+            });
+
+            for (let i = 1; i <= 5; i++) {
+                const dot = document.getElementById(`stepDot_${i}`);
+                if (dot) {
+                    if (i === appState.currentStep) {
+                        dot.classList.add("active");
+                    } else {
+                        dot.classList.remove("active");
+                    }
+                }
+            }
+        }
+
+        // 2. Form Navigation Rules
+        function setupFormNavigation() {
+            document.querySelectorAll(".btn-next").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    if (validateCurrentStep()) {
+                        appState.currentStep++;
+                        updateStepsUI();
+                    }
+                });
+            });
+
+            document.querySelectorAll(".btn-prev").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    if (appState.currentStep > 1) {
+                        appState.currentStep--;
+                        updateStepsUI();
+                    }
+                });
+            });
+        }
+
+        function validateCurrentStep() {
+            if (appState.currentStep === 2) {
+                const age = parseInt(document.getElementById("ageInput").value);
+                const height = parseFloat(document.getElementById("heightInput").value);
+                const weight = parseFloat(document.getElementById("weightInput").value);
+                
+                if (isNaN(age) || age < 14 || age > 80) return false;
+                if (isNaN(height) || height < 100 || height > 230) return false;
+                if (isNaN(weight) || weight < 30 || weight > 200) return false;
+
+                appState.age = age;
+                appState.height = height;
+                appState.weight = weight;
+            }
+            return true;
+        }
+
+        // 3. Gender Card Interactivity
+        function setupGenderCards() {
+            document.querySelectorAll(".gender-card").forEach(card => {
+                card.addEventListener("click", function() {
+                    document.querySelectorAll(".gender-card").forEach(c => c.classList.remove("active"));
+                    this.classList.add("active");
+                    const rad = this.querySelector('input[type="radio"]');
+                    rad.checked = true;
+                    appState.gender = rad.value;
+                });
+            });
+        }
+
+        // 4. Multi-language Core System
+        function initLanguages() {
+            const selector = document.getElementById("languageSelector");
+            selector.innerHTML = "";
+            i18nSystem.supportedLanguages.forEach(lang => {
+                const btn = document.createElement("button");
+                btn.className = `lang-btn ${lang === i18nSystem.currentLanguage ? 'active' : ''}`;
+                btn.textContent = lang;
+                btn.addEventListener("click", () => changeLanguage(lang));
+                selector.appendChild(btn);
+            });
+            translateUI();
+        }
+
+        function changeLanguage(lang) {
+            i18nSystem.currentLanguage = lang;
+            document.querySelectorAll(".lang-btn").forEach(b => {
+                if (b.textContent.toLowerCase() === lang) b.classList.add("active");
+                else b.classList.remove("active");
+            });
+
+            if (i18nSystem.rtlLanguages.includes(lang)) {
+                document.documentElement.setAttribute("dir", "rtl");
+            } else {
+                document.documentElement.setAttribute("dir", "ltr");
+            }
+
+            translateUI();
+            if (document.getElementById("resultsPanel").style.display === "block" || document.getElementById("resultsPanel").classList.contains("active")) {
+                renderGeneratedPlan();
+            }
+        }
+
+        function translateUI() {
+            const lang = i18nSystem.currentLanguage;
+            const dict = i18nSystem.dictionary[lang] || i18nSystem.dictionary['en'];
+
+            const safetxt = (id, key) => { const el = document.getElementById(id); if (el && dict[key]) el.textContent = dict[key]; };
+            
+            safetxt('appTitle', 'appTitle');
+            safetxt('step1Title', 'step1Title');
+            safetxt('step1Subtitle', 'step1Subtitle');
+            safetxt('genderMaleLabel', 'genderMaleLabel');
+            safetxt('genderFemaleLabel', 'genderFemaleLabel');
+            safetxt('step2Title', 'step2Title');
+            safetxt('step2Subtitle', 'step2Subtitle');
+            safetxt('ageLabel', 'ageLabel');
+            safetxt('heightLabel', 'heightLabel');
+            safetxt('weightLabel', 'weightLabel');
+            safetxt('ageHelp', 'ageHelp');
+            safetxt('heightHelp', 'heightHelp');
+            safetxt('weightHelp', 'weightHelp');
+            safetxt('step3Title', 'step3Title');
+            safetxt('step3Subtitle', 'step3Subtitle');
+            safetxt('locationHomeLabel', 'locationHomeLabel');
+            safetxt('locationGymLabel', 'locationGymLabel');
+            safetxt('step4Title', 'step4Title');
+            safetxt('step4Subtitle', 'step4Subtitle');
+            safetxt('zoneFullBodyLabel', 'zoneFullBodyLabel');
+            safetxt('zoneArmsLabel', 'zoneArmsLabel');
+            safetxt('zoneLegsLabel', 'zoneLegsLabel');
+            safetxt('zonePushLabel', 'zonePushLabel');
+            safetxt('zonePullLabel', 'zonePullLabel');
+            safetxt('zoneCoreLabel', 'zoneCoreLabel');
+            safetxt('step5Title', 'step5Title');
+            safetxt('step5Subtitle', 'step5Subtitle');
+            safetxt('goalWeightLossLabel', 'goalWeightLossLabel');
+            safetxt('goalWeightGainLabel', 'goalWeightGainLabel');
+            safetxt('goalMaintainLabel', 'goalMaintainLabel');
+            safetxt('generateBtnText', 'generateBtnText');
+            safetxt('loadingText', 'loadingText');
+            safetxt('backBtnText', 'backBtnText');
+            safetxt('profileTitle', 'profileTitle');
+            safetxt('profileGenderLabel', 'profileGenderLabel');
+            safetxt('profileAgeLabel', 'profileAgeLabel');
+            safetxt('profileBMILabel', 'profileBMILabel');
+            safetxt('profileGoalLabel', 'profileGoalLabel');
+            safetxt('planTitle', 'planTitle');
+            safetxt('workoutScheduleTitle', 'workoutScheduleTitle');
+            safetxt('workoutNotesTitle', 'workoutNotesTitle');
+            safetxt('nutritionTitle', 'nutritionTitle');
+            safetxt('nutritionGuidelinesTitle', 'nutritionGuidelinesTitle');
+            safetxt('tipsTitle', 'tipsTitle');
+            safetxt('downloadBtnText', 'downloadBtnText');
+            safetxt('regenerateBtnText', 'regenerateBtnText');
+            safetxt('footerText', 'footerText');
+
+            document.querySelectorAll(".nextBtnText").forEach(el => el.textContent = dict['nextBtnText']);
+            document.querySelectorAll(".prevBtnText").forEach(el => el.textContent = dict['prevBtnText']);
+
+            const bWord = dict['badgeStep'] || 'Step';
+            for(let i=1; i<=5; i++){
+                const b = document.getElementById(`badgeStep${i}`);
+                if (b) b.textContent = `${bWord} ${i}`;
+            }
+        }
+
+        // 5. Light/Dark Theme Engine
+        function setupThemeToggle() {
+            const toggle = document.getElementById("themeToggle");
+            toggle.addEventListener("click", () => {
+                if (document.body.classList.contains("dark-mode")) {
+                    document.body.classList.remove("dark-mode");
+                    document.body.classList.add("light-mode");
+                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    appState.darkMode = false;
+                } else {
+                    document.body.classList.remove("light-mode");
+                    document.body.classList.add("dark-mode");
+                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    appState.darkMode = true;
+                }
+            });
+        }
+
+        // ============================================
+        // 6. GENERATION ENGINE & DISPATCHER
+        // ============================================
+        function setupGenerateMechanism() {
+            const genBtn = document.getElementById("generateBtn");
+            genBtn.addEventListener("click", () => {
+                appState.location = document.querySelector('input[name="location"]:checked').value;
+                appState.targetZone = document.querySelector('input[name="targetZone"]:checked').value;
+                appState.goal = document.querySelector('input[name="goal"]:checked').value;
+                
+                appState.calculateBMI();
+                appState.getAgeGroup();
+                appState.getBMIStatus();
+
+                document.getElementById("formContainer").style.display = "none";
+                const loading = document.getElementById("loadingContainer");
+                loading.classList.add("active");
+
+                // CTR Booster: 2.5 second delay to ensure maximum interstitial ad exposure
+                setTimeout(() => {
+                    loading.classList.remove("active");
+                    renderGeneratedPlan();
+                    const results = document.getElementById("resultsPanel");
+                    results.classList.add("active");
+                    results.style.display = "block";
+                }, 2500);
+            });
+        }
+
+        function renderGeneratedPlan() {
+            const lang = i18nSystem.currentLanguage;
+            const dict = i18nSystem.dictionary[lang] || i18nSystem.dictionary['en'];
+
+            document.getElementById("profileGenderValue").textContent = dict[appState.gender === 'male' ? 'genderMaleLabel' : 'genderFemaleLabel'];
+            document.getElementById("profileAgeValue").textContent = dict[appState.ageGroup] || appState.ageGroup;
+            
+            const bmiValNode = document.getElementById("profileBMIValue");
+            bmiValNode.textContent = `${dict[appState.bmiStatus] || appState.bmiStatus} (${appState.bmi.toFixed(1)})`;
+            
+            bmiValNode.className = "badge";
+            if (appState.bmiStatus === 'normal') bmiValNode.classList.add("badge-success");
+            else if (appState.bmiStatus === 'overweight') bmiValNode.classList.add("badge-warning");
+            else bmiValNode.classList.add("badge-danger");
+
+            document.getElementById("profileGoalValue").textContent = dict[appState.goal === 'weight_loss' ? 'weightLoss' : appState.goal === 'weight_gain' ? 'weightGain' : 'maintain'];
+
+            const planKey = `${appState.gender.substring(0,1)}_${appState.ageGroup.replace('_','')}_${appState.bmiStatus}_${appState.location}_${appState.targetZone.replace('_','')}_${appState.goal.replace('_','')}`;
+            let selectedPlan = fitnessDatabase.find(p => p.planId === planKey);
+            
+            let planData;
+            if (selectedPlan && selectedPlan.translations[lang]) {
+                planData = selectedPlan.translations[lang];
+            } else if (selectedPlan && selectedPlan.translations['en']) {
+                planData = selectedPlan.translations['en'];
+            } else {
+                planData = generateFallbackPlan(appState.gender, appState.ageGroup, appState.bmiStatus, appState.location, appState.targetZone, appState.goal, lang);
+            }
+
+            document.getElementById("planTitle").textContent = planData.title;
+            document.getElementById("planDuration").textContent = planData.duration;
+
+            const scheduleContainer = document.getElementById("workoutSchedule");
+            scheduleContainer.innerHTML = "";
+            planData.workoutSchedule.forEach(item => {
+                const dayBlock = document.createElement("div");
+                dayBlock.className = "mb-2";
+                dayBlock.innerHTML = `<p class="font-semibold text-sm text-primary mb-1">${item.day}:</p>`;
+                const exList = document.createElement("div");
+                exList.className = "space-y-1 pl-2 border-l border-indigo-500/30";
+                item.exercises.forEach(ex => {
+                    const exItem = document.createElement("div");
+                    exItem.className = "exercise-item";
+                    exItem.textContent = ex;
+                    exList.appendChild(exItem);
+                });
+                dayBlock.appendChild(exList);
+                scheduleContainer.appendChild(dayBlock);
+            });
+
+            document.getElementById("dietAdviceContent").textContent = planData.dietAdvice;
+            const microNutContainer = document.getElementById("nutritionGuidelines");
+            microNutContainer.innerHTML = "";
+            planData.nutritionGuidelines.forEach(guide => {
+                const div = document.createElement("div");
+                div.className = "exercise-item";
+                div.textContent = guide;
+                microNutContainer.appendChild(div);
+            });
+
+            const tipsContainer = document.getElementById("tipsList");
+            tipsContainer.innerHTML = "";
+            planData.proTips.forEach(tip => {
+                const div = document.createElement("div");
+                div.className = "p-3 bg-slate-700/30 rounded-lg text-sm border-l-2 border-pink-500";
+                div.textContent = tip;
+                tipsContainer.appendChild(div);
+            });
+        }
+
+        // Trick Activation Function (Content Locker Unlocker Simulation)
+        function triggerAdClickSim() {
+            // Simulated redirection to optimized monetization layout or external ad partner link
+            // In live setup, target an actual element id or force refresh on script loading.
+            document.getElementById("tipsOverlay").style.display = "none";
+            document.getElementById("tipsList").classList.remove("blur-trick-content");
+        }
+
+        // 7. Results Interactivity (Back & Print actions)
+        function setupResultsActions() {
+            const resetToForm = () => {
+                // Instantly reset the content locking system for another loop of ad displays
+                document.getElementById("tipsOverlay").style.display = "flex";
+                document.getElementById("tipsList").classList.add("blur-trick-content");
+                
+                document.getElementById("resultsPanel").classList.remove("active");
+                document.getElementById("resultsPanel").style.display = "none";
+                document.getElementById("formContainer").style.display = "block";
+                appState.currentStep = 1;
+                updateStepsUI();
+            };
+
+            document.getElementById("backBtn").addEventListener("click", resetToForm);
+            document.getElementById("regenerateBtn").addEventListener("click", resetToForm);
+
+            document.getElementById("downloadBtn").addEventListener("click", () => {
+                alert("Redirecting to verification server. Please view sponsored content to receive high-speed PDF download link.");
+                window.print();
+            });
+        }
+    </script>
+</body>
+</html>
