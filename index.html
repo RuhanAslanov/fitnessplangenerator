@@ -87,7 +87,6 @@
             text-align: right;
         }
 
-        /* ===== ANIMATIONS & TRANSITIONS ===== */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -126,7 +125,6 @@
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
-        /* ===== CARD STYLING ===== */
         .card {
             background-color: var(--bg-secondary);
             border-radius: 16px;
@@ -145,7 +143,6 @@
             box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
         }
 
-        /* ===== BUTTON STYLES ===== */
         .btn {
             padding: 12px 24px;
             border-radius: 8px;
@@ -191,7 +188,6 @@
             font-size: 13px;
         }
 
-        /* ===== GENDER CARD SELECTOR ===== */
         .gender-card {
             position: relative;
             padding: 24px;
@@ -222,7 +218,6 @@
             line-height: 1;
         }
 
-        /* ===== INPUT FIELDS ===== */
         input[type="number"],
         input[type="text"],
         select {
@@ -245,7 +240,6 @@
             background-color: var(--bg-secondary);
         }
 
-        /* ===== RADIO/CHECKBOX STYLING ===== */
         .radio-group,
         .checkbox-group {
             display: grid;
@@ -290,7 +284,6 @@
             font-weight: 600;
         }
 
-        /* ===== LANGUAGE SELECTOR ===== */
         .language-selector {
             position: fixed;
             top: 20px;
@@ -303,7 +296,7 @@
             display: flex;
             gap: 4px;
             flex-wrap: wrap;
-            max-width: 400px;
+            max-width: 450px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
@@ -335,11 +328,10 @@
             border-color: var(--primary);
         }
 
-        /* ===== THEME TOGGLE ===== */
         .theme-toggle {
             position: fixed;
             top: 20px;
-            right: 435px;
+            right: 485px;
             z-index: 1000;
             background-color: var(--bg-secondary);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -352,14 +344,13 @@
 
         html[dir="rtl"] .theme-toggle {
             right: auto;
-            left: 435px;
+            left: 485px;
         }
 
         .theme-toggle:hover {
             background-color: var(--bg-tertiary);
         }
 
-        /* ===== STEP INDICATOR ===== */
         .step-indicator {
             display: flex;
             gap: 8px;
@@ -386,7 +377,6 @@
             border-radius: 4px;
         }
 
-        /* ===== SECTION STYLES ===== */
         .form-section {
             display: none;
             animation: slideInUp 0.6s ease-out;
@@ -411,7 +401,6 @@
             color: var(--text-secondary);
         }
 
-        /* ===== RESULT PANEL ===== */
         .result-panel {
             display: none;
         }
@@ -428,7 +417,6 @@
             margin-top: 24px;
         }
 
-        /* ===== BADGE STYLES ===== */
         .badge {
             display: inline-block;
             padding: 6px 12px;
@@ -458,7 +446,6 @@
             color: var(--danger);
         }
 
-        /* ===== LOADING STATE ===== */
         .loading-container {
             display: none;
             text-align: center;
@@ -488,7 +475,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* ===== TYPOGRAPHY ===== */
         h1, h2, h3 {
             font-weight: 700;
         }
@@ -508,7 +494,6 @@
             line-height: 1.4;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .theme-toggle {
                 right: auto;
@@ -557,7 +542,6 @@
             }
         }
 
-        /* ===== EXERCISE LIST ===== */
         .exercise-list {
             display: flex;
             flex-direction: column;
@@ -587,7 +571,6 @@
             transform: translateX(-4px);
         }
 
-        /* ===== DIVIDER ===== */
         .divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
@@ -598,7 +581,6 @@
             background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
         }
 
-        /* ===== BACK BUTTON ===== */
         .back-navigation {
             margin-bottom: 24px;
         }
@@ -641,7 +623,7 @@
                 <div class="form-section active" id="step1">
                     <div class="section-header">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="badge badge-primary" id="badgeStep1">Step 1</span>
+                            <span class="badge badge-primary"><span class="badgeStep">Step</span> 1</span>
                             <h2 id="step1Title" class="section-title">Select Your Gender</h2>
                         </div>
                         <p id="step1Subtitle" class="section-subtitle">This helps us personalize your fitness plan</p>
@@ -672,7 +654,7 @@
                 <div class="form-section" id="step2">
                     <div class="section-header">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="badge badge-primary" id="badgeStep2">Step 2</span>
+                            <span class="badge badge-primary"><span class="badgeStep">Step</span> 2</span>
                             <h2 id="step2Title" class="section-title">Your Body Metrics</h2>
                         </div>
                         <p id="step2Subtitle" class="section-subtitle">Enter your age, height, and weight for accurate results</p>
@@ -713,7 +695,7 @@
                 <div class="form-section" id="step3">
                     <div class="section-header">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="badge badge-primary" id="badgeStep3">Step 3</span>
+                            <span class="badge badge-primary"><span class="badgeStep">Step</span> 3</span>
                             <h2 id="step3Title" class="section-title">Where Do You Exercise?</h2>
                         </div>
                         <p id="step3Subtitle" class="section-subtitle">Choose your primary workout location</p>
@@ -746,7 +728,7 @@
                 <div class="form-section" id="step4">
                     <div class="section-header">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="badge badge-primary" id="badgeStep4">Step 4</span>
+                            <span class="badge badge-primary"><span class="badgeStep">Step</span> 4</span>
                             <h2 id="step4Title" class="section-title">Target Muscle Zone</h2>
                         </div>
                         <p id="step4Subtitle" class="section-subtitle">Which area would you like to focus on?</p>
@@ -799,7 +781,7 @@
                 <div class="form-section" id="step5">
                     <div class="section-header">
                         <div class="flex items-center gap-2 mb-4">
-                            <span class="badge badge-primary" id="badgeStep5">Step 5</span>
+                            <span class="badge badge-primary"><span class="badgeStep">Step</span> 5</span>
                             <h2 id="step5Title" class="section-title">Your Primary Goal</h2>
                         </div>
                         <p id="step5Subtitle" class="section-subtitle">What's your main fitness objective?</p>
@@ -911,8 +893,7 @@
 
                 <div class="card overflow-hidden">
                     <h2 id="tipsTitle" class="text-2xl font-bold mb-6">Pro Tips for Success</h2>
-                    <div id="tipsList" class="space-y-3">
-                        </div>
+                    <div id="tipsList" class="space-y-3"></div>
                 </div>
 
                 <div class="mt-8 flex gap-4">
@@ -943,9 +924,6 @@
     </div>
 
     <script>
-        // ============================================
-        // COMPREHENSIVE 12-LANGUAGE LOCALIZATION SYSTEM
-        // ============================================
         const i18nSystem = {
             supportedLanguages: ['en', 'az', 'tr', 'ru', 'es', 'fr', 'de', 'it', 'pt', 'ar', 'zh', 'ja'],
             currentLanguage: 'en',
@@ -994,7 +972,7 @@
                     step3Title: 'Siz Harada Məşq Edirsiniz?', step3Subtitle: 'Birincil məşq yerini seçin',
                     locationHomeLabel: '🏠 Ev', locationGymLabel: '🏋️ Gym',
                     step4Title: 'Hədəf Əzələ Zonu', step4Subtitle: 'Hansı sahəyə diqqət vermək istərsiniz?',
-                    zoneFullBodyLabel: '🤸 Tam Bədən', zoneArmsLabel: '💪 Qollar', zoneLegsLabel: 'Ayaqlar',
+                    zoneFullBodyLabel: '🤸 Tam Bədən', zoneArmsLabel: '💪 Qollar', zoneLegsLabel: '🦵 Ayaqlar',
                     zonePushLabel: '🚀 İtirmə (Push)', zonePullLabel: '🎯 Dartma (Pull)', zoneCoreLabel: '🎲 Kor (Core)',
                     step5Title: 'Sizin Birincil Məqsədiniz', step5Subtitle: 'Sizin əsas fitness hədəfi nədir?',
                     goalWeightLossLabel: '📉 Çəki Azaldın', goalWeightGainLabel: '📈 Çəki Artırın', goalMaintainLabel: '💪 Sağlam Qalın',
@@ -1002,7 +980,7 @@
                     profileBMILabel: 'BMI Statusu', profileGoalLabel: 'Məqsəd', planTitle: 'Sizin Şəxsiyləşdirilmiş Məşq Planı',
                     workoutScheduleTitle: 'Məşq Cədvəli', workoutNotesTitle: 'Mühüm Qeydlər',
                     nutritionTitle: 'Qidalanma Tövsiyələri', nutritionGuidelinesTitle: 'Günlük Təlimatlar', tipsTitle: 'Uğur üçün Pro Məsləhətlər',
-                    teen: 'Yeniyetmə (14-17)', youngAdult: 'Gənc Böyük (18-25)', adult: 'Böyük (26-45)', senior: 'Yaşlı (46-80)',
+                    teen: 'Yeniyetmə (14-17)', youngAdult: 'Gənc (18-25)', adult: 'Böyük (26-45)', senior: 'Yaşlı (46-80)',
                     underweight: 'Az çəkili', normal: 'Normal', overweight: 'Artıq çəkili', obese: 'Obez',
                     weightLoss: 'Çəki Itkisi', weightGain: 'Çəki Artımı', maintain: 'Formda Qalın', badgeStep: 'Addım',
                     waterTrackerTitle: 'Günlük Su İzləyicisi', waterTrackerDesc: 'Su balansını qorumaq məşq sonrası bərpa üçün kritikdir. Günlük qəbulu qeyd edin:',
@@ -1024,7 +1002,7 @@
                     step3Title: 'Nerede Egzersiz Yapıyorsunuz?', step3Subtitle: 'Ana antrenman konumunuzu seçin',
                     locationHomeLabel: '🏠 Ev', locationGymLabel: '🏋️ Spor Salonu',
                     step4Title: 'Hedef Kas Bölgesi', step4Subtitle: 'Hangi bölgeye odaklanmak istersiniz?',
-                    zoneFullBodyLabel: '🤸 Tüm Vücut', zoneArmsLabel: '💪 Kollar', zoneLegsLabel: 'Bacaklar',
+                    zoneFullBodyLabel: '🤸 Tüm Vücut', zoneArmsLabel: '💪 Kollar', zoneLegsLabel: '🦵 Bacaklar',
                     zonePushLabel: '🚀 İtiş (Push)', zonePullLabel: '🎯 Çekiş (Pull)', zoneCoreLabel: '🎲 Karın (Core)',
                     step5Title: 'Temel Hedefiniz', step5Subtitle: 'Ana fitness amacınız nedir?',
                     goalWeightLossLabel: '📉 Kilo Ver', goalWeightGainLabel: '📈 Kilo Al', goalMaintainLabel: '💪 Formu Koru',
@@ -1039,7 +1017,277 @@
                     addWaterText: '+250ml Tüketildi', eduTitle: 'Dijital Fitness Mühendisliğinde Gelişmiş Metodolojiler',
                     eduHeading1: 'Dinamik Mikro Antrenman Planlamasının Bilimi',
                     eduBody1: 'Dengeli bir sağlık stratejisi oluşturmak; fizyolojik değişkenleri, dinlenme aralıklarını ve metabolik indeksleri kapsayan çoklu parametre analizleri gerektirir. Bu modüler sistem, verileri işleyerek kalistenik ve kardiyo süreçlerini güvenle planlar.',
-                    eduBody2: 'Yapılandırılmış makro hesaplamalar, egzersize başlama bariyerini düşürür ve uzun vadeli fizyolojik istikrarı maksimize eder. Anlık parametre adaptasyonları, hedeflenen direnci ve kalori gereksinimlerini kişiselleştirilmiş olarak hesaplar.'
+                    eduBody2: 'Yapılandırılmış makro hesaplamalar, egzersize başlama bariyerini düşürür ve uzun vadeli fizyolojik istikrarı maksimize eder. Anlıkampametre adaptasyonları, hedeflenen direnci ve kalori gereksinimlerini kişiselleştirilmiş olarak hesaplar.'
+                },
+                ru: {
+                    appTitle: 'Elite Fitness Генератор', nextBtnText: 'Далее', prevBtnText: 'Назад',
+                    generateBtnText: 'Создать мой план', backBtnText: 'Изменить план', downloadBtnText: 'Скачать план (PDF)',
+                    regenerateBtnText: 'Попробовать другой план', loadingText: 'Анализ вашего профиля...',
+                    footerText: '© 2024 Elite Fitness Генератор. Все права защищены.',
+                    step1Title: 'Выберите ваш пол', step1Subtitle: 'Это поможет нам персонализировать ваш план',
+                    genderMaleLabel: 'Мужчина', genderFemaleLabel: 'Женщина', step2Title: 'Параметры тела',
+                    step2Subtitle: 'Введите возраст, рост и вес для точных результатов',
+                    ageLabel: 'Возраст', heightLabel: 'Рост (см)', weightLabel: 'Вес (кг)',
+                    ageHelp: '14 - 80 лет', heightHelp: '100 - 230 см', weightHelp: '30 - 200 кг',
+                    step3Title: 'Где вы тренируетесь?', step3Subtitle: 'Выберите основное место тренировок',
+                    locationHomeLabel: '🏠 Дома', locationGymLabel: '🏋️ В зале',
+                    step4Title: 'Целевая мышечная зона', step4Subtitle: 'На какой зоне вы хотите сфокусироваться?',
+                    zoneFullBodyLabel: '🤸 Все тело', zoneArmsLabel: '💪 Руки', zoneLegsLabel: '🦵 Ноги',
+                    zonePushLabel: '🚀 Толкающие', zonePullLabel: '🎯 Тянущие', zoneCoreLabel: '🎲 Кор / Пресс',
+                    step5Title: 'Ваша главная цель', step5Subtitle: 'Какова ваша основная цель в фитнесе?',
+                    goalWeightLossLabel: '📉 Сбросить вес', goalWeightGainLabel: '📈 Набрать вес', goalMaintainLabel: '💪 Быть в форме',
+                    profileTitle: 'Сводка профиля', profileGenderLabel: 'Пол', profileAgeLabel: 'Возраст',
+                    profileBMILabel: 'ИМТ Статус', profileGoalLabel: 'Цель', planTitle: 'Ваш персональный план тренировок',
+                    workoutScheduleTitle: 'Программа тренировок', workoutNotesTitle: 'Важные примечания',
+                    nutritionTitle: 'Рекомендации по питанию', nutritionGuidelinesTitle: 'Суточные нормы', tipsTitle: 'Советы для успеха',
+                    teen: 'Подросток (14-17)', youngAdult: 'Молодой (18-25)', adult: 'Взрослый (26-45)', senior: 'Пожилой (46-80)',
+                    underweight: 'Дефицит веса', normal: 'Норма', overweight: 'Избыточный вес', obese: 'Ожирение',
+                    weightLoss: 'Похудение', weightGain: 'Набор веса', maintain: 'Поддержание формы', badgeStep: 'Шаг',
+                    waterTrackerTitle: 'Трекер воды', waterTrackerDesc: 'Гидратация важна для восстановления после тренировок. Логируйте воду:',
+                    addWaterText: '+250мл Выпито', eduTitle: 'Передовые методы цифрового фитнес-инжиниринга',
+                    eduHeading1: 'Наука динамического планирования микроциклов',
+                    eduBody1: 'Формирование сбалансированной стратегии требует многопараметрической оценки физиологических показателей, окон восстановления и метаболизма. Эта модульная система рассчитывает тренировки для калистеники и зала.',
+                    eduBody2: 'Структурированные макрорасчеты снижают барьеры и максимизируют стабильность результатов. Адаптивные алгоритмы мгновенно рассчитывают нагрузки и суточные калории под конкретные типы телосложения.'
+                },
+                es: {
+                    appTitle: 'Generador Elite Fitness', nextBtnText: 'Siguiente', prevBtnText: 'Atrás',
+                    generateBtnText: 'Generar Mi Plan', backBtnText: 'Modificar Plan', downloadBtnText: 'Descargar Plan (PDF)',
+                    regenerateBtnText: 'Probar Otro Plan', loadingText: 'Analizando tu perfil...',
+                    footerText: '© 2024 Elite Fitness Generator. Todos los derechos reservados.',
+                    step1Title: 'Selecciona Tu Género', step1Subtitle: 'Esto nos ayuda a personalizar tu plan',
+                    genderMaleLabel: 'Hombre', genderFemaleLabel: 'Mujer', step2Title: 'Tus Métricas Corporal',
+                    step2Subtitle: 'Introduce edad, altura y peso para resultados precisos',
+                    ageLabel: 'Edad', heightLabel: 'Altura (cm)', weightLabel: 'Peso (kg)',
+                    ageHelp: '14 - 80 años', heightHelp: '100 - 230 cm', weightHelp: '30 - 200 kg',
+                    step3Title: '¿Dónde Entrenas?', step3Subtitle: 'Elige tu lugar principal de entrenamiento',
+                    locationHomeLabel: '🏠 Casa', locationGymLabel: '🏋️ Gimnasio',
+                    step4Title: 'Zona Muscular Objetivo', step4Subtitle: '¿En qué zona deseas enfocarte?',
+                    zoneFullBodyLabel: '🤸 Todo el Cuerpo', zoneArmsLabel: '💪 Brazos', zoneLegsLabel: '🦵 Piernas',
+                    zonePushLabel: '🚀 Empuje', zonePullLabel: '🎯 Tirón', zoneCoreLabel: '🎲 Core / Abdomen',
+                    step5Title: 'Tu Objetivo Principal', step5Subtitle: '¿Cuál es tu meta principal?',
+                    goalWeightLossLabel: '📉 Perder Peso', goalWeightGainLabel: '📈 Ganar Peso', goalMaintainLabel: '💪 Mantenerse En Forma',
+                    profileTitle: 'Resumen del Perfil', profileGenderLabel: 'Género', profileAgeLabel: 'Grupo de Edad',
+                    profileBMILabel: 'Estado de IMC', profileGoalLabel: 'Objetivo', planTitle: 'Tu Plan de Entrenamiento Personalizado',
+                    workoutScheduleTitle: 'Horario de Entrenamientos', workoutNotesTitle: 'Notas Importantes',
+                    nutritionTitle: 'Recomendaciones Nutricionales', nutritionGuidelinesTitle: 'Guía Diaria', tipsTitle: 'Consejos para el Éxito',
+                    teen: 'Adolescente (14-17)', youngAdult: 'Adulto Joven (18-25)', adult: 'Adulto (26-45)', senior: 'Senior (46-80)',
+                    underweight: 'Bajo peso', normal: 'Normal', overweight: 'Sobrepeso', obese: 'Obesidad',
+                    weightLoss: 'Pérdida de Peso', weightGain: 'Ganancia de Peso', maintain: 'Mantener Estado', badgeStep: 'Paso',
+                    waterTrackerTitle: 'Control de Agua Diario', waterTrackerDesc: 'Mantener la hidratación es crucial para la recuperación. Registra tu consumo:',
+                    addWaterText: '+250ml Consumido', eduTitle: 'Metodologías Avanzadas en Ingeniería de Fitness Digital',
+                    eduHeading1: 'La Ciencia de la Planificación Dinámica de Microentrenamientos',
+                    eduBody1: 'La formulación de una estrategia de salud equilibrada requiere evaluaciones multiparámetricas. Este sistema modular procesa variables continuas para diseñar rutinas óptimas.',
+                    eduBody2: 'Los macrocálculos estructurados reducen las barreras de ejecución y maximizan la consistencia fisiológica en plazos prolongados.'
+                },
+                fr: {
+                    appTitle: 'Elite Fitness Générateur', nextBtnText: 'Suivant', prevBtnText: 'Retour',
+                    generateBtnText: 'Générer Mon Plan', backBtnText: 'Modifier le Plan', downloadBtnText: 'Télécharger (PDF)',
+                    regenerateBtnText: 'Essayer un autre plan', loadingText: 'Analyse de votre profil...',
+                    footerText: '© 2024 Elite Fitness Générateur. Tous droits réservés.',
+                    step1Title: 'Sélectionnez Votre Sexe', step1Subtitle: 'Cela nous aide à personnaliser votre plan',
+                    genderMaleLabel: 'Homme', genderFemaleLabel: 'Femme', step2Title: 'Vos Métriques Corporelles',
+                    step2Subtitle: 'Entrez votre âge, taille et poids',
+                    ageLabel: 'Âge', heightLabel: 'Taille (cm)', weightLabel: 'Poids (kg)',
+                    ageHelp: '14 - 80 ans', heightHelp: '100 - 230 cm', weightHelp: '30 - 200 kg',
+                    step3Title: 'Où vous entraînez-vous ?', step3Subtitle: 'Choisissez votre lieu principal',
+                    locationHomeLabel: '🏠 Maison', locationGymLabel: '🏋️ Salle de sport',
+                    step4Title: 'Zone Musculaire Cible', step4Subtitle: 'Sur quelle zone voulez-vous vous concentrer ?',
+                    zoneFullBodyLabel: '🤸 Tout le corps', zoneArmsLabel: '💪 Bras', zoneLegsLabel: '🦵 Jambes',
+                    zonePushLabel: '🚀 Poussée', zonePullLabel: '🎯 Tirage', zoneCoreLabel: '🎲 Core / Abdos',
+                    step5Title: 'Votre Objectif Principal', step5Subtitle: 'Quel est votre objectif ?',
+                    goalWeightLossLabel: '📉 Perdre du poids', goalWeightGainLabel: '📈 Prendre du poids', goalMaintainLabel: '💪 Rester en forme',
+                    profileTitle: 'Résumé du Profil', profileGenderLabel: 'Sexe', profileAgeLabel: 'Groupe d\'âge',
+                    profileBMILabel: 'Statut IMC', profileGoalLabel: 'Objectif', planTitle: 'Votre Plan d\'Entraînement Personnalisé',
+                    workoutScheduleTitle: 'Programme de l\'entraînement', workoutNotesTitle: 'Notes Importantes',
+                    nutritionTitle: 'Recommandations Nutritionnelles', nutritionGuidelinesTitle: 'Directives Quotidiennes', tipsTitle: 'Conseils pour réussir',
+                    teen: 'Ado (14-17)', youngAdult: 'Jeune Adulte (18-25)', adult: 'Adulte (26-45)', senior: 'Senior (46-80)',
+                    underweight: 'Poids insuffisant', normal: 'Normal', overweight: 'Surpoids', obese: 'Obèse',
+                    weightLoss: 'Perte de poids', weightGain: 'Prise de poids', maintain: 'Rester en forme', badgeStep: 'Étape',
+                    waterTrackerTitle: 'Suivi de l\'eau quotidien', waterTrackerDesc: 'L\'hydratation est essentielle pour la récupération. Enregistrez votre consommation :',
+                    addWaterText: '+250ml Consommé', eduTitle: 'Méthodologies Avancées en Ingénierie du Fitness Numérique',
+                    eduHeading1: 'La science de la planification dynamique des entraînements',
+                    eduBody1: 'Formuler une stratégie de santé équilibrée nécessite des évaluations multiparamétriques couvrant les variations physiologiques.',
+                    eduBody2: 'Les macro-calculs structurés réduisent les barrières à l\'exécution et maximisent la cohérence physiologique.'
+                },
+                de: {
+                    appTitle: 'Elite Fitness Generator', nextBtnText: 'Weiter', prevBtnText: 'Zurück',
+                    generateBtnText: 'Meinen Plan erstellen', backBtnText: 'Plan ändern', downloadBtnText: 'Plan herunterladen (PDF)',
+                    regenerateBtnText: 'Anderen Plan versuchen', loadingText: 'Profil wird analysiert...',
+                    footerText: '© 2024 Elite Fitness Generator. Alle Rechte vorbehalten.',
+                    step1Title: 'Geschlecht wählen', step1Subtitle: 'Dies hilft bei der Personalisierung des Plans',
+                    genderMaleLabel: 'Männlich', genderFemaleLabel: 'Weiblich', step2Title: 'Körperdaten',
+                    step2Subtitle: 'Geben Sie Alter, Größe und Gewicht ein',
+                    ageLabel: 'Alter', heightLabel: 'Größe (cm)', weightLabel: 'Gewicht (kg)',
+                    ageHelp: '14 - 80 Jahre', heightHelp: '100 - 230 cm', weightHelp: '30 - 200 kg',
+                    step3Title: 'Wo trainieren Sie?', step3Subtitle: 'Wählen Sie Ihren primären Trainingsort',
+                    locationHomeLabel: '🏠 Zuhause', locationGymLabel: '🏋️ Fitnessstudio',
+                    step4Title: 'Ziel-Muskelzone', step4Subtitle: 'Worauf möchten Sie sich konzentrieren?',
+                    zoneFullBodyLabel: '🤸 Ganzkörper', zoneArmsLabel: '💪 Arme', zoneLegsLabel: '🦵 Beine',
+                    zonePushLabel: '🚀 Push', zonePullLabel: '🎯 Pull', zoneCoreLabel: '🎲 Core / Bauch',
+                    step5Title: 'Ihr Hauptziel', step5Subtitle: 'Was ist Ihr primäres Fitnessziel?',
+                    goalWeightLossLabel: '📉 Gewicht verlieren', goalWeightGainLabel: '📈 Gewicht zunehmen', goalMaintainLabel: '💪 Fit bleiben',
+                    profileTitle: 'Profilübersicht', profileGenderLabel: 'Geschlecht', profileAgeLabel: 'Altersgruppe',
+                    profileBMILabel: 'BMI-Status', profileGoalLabel: 'Ziel', planTitle: 'Ihr personalisierter Trainingsplan',
+                    workoutScheduleTitle: 'Trainingsplan', workoutNotesTitle: 'Wichtige Hinweise',
+                    nutritionTitle: 'Ernährungsempfehlungen', nutritionGuidelinesTitle: 'Tägliche Richtlinien', tipsTitle: 'Erfolgstipps',
+                    teen: 'Teenager (14-17)', youngAdult: 'Junger Erwachsener (18-25)', adult: 'Erwachsener (26-45)', senior: 'Senior (46-80)',
+                    underweight: 'Untergewicht', normal: 'Normal', overweight: 'Übergewicht', obese: 'Adlipös',
+                    weightLoss: 'Gewichtsverlust', weightGain: 'Gewichtszunahme', maintain: 'Gewicht halten', badgeStep: 'Schritt',
+                    waterTrackerTitle: 'Täglicher Wasser-Tracker', waterTrackerDesc: 'Hydratation ist kritisch für die Regeneration. Tragen Sie Ihren Verbrauch ein:',
+                    addWaterText: '+250ml Getrunken', eduTitle: 'Erweiterte Methodiken im digitalen Fitness-Engineering',
+                    eduHeading1: 'Die Wissenschaft der dynamischen Mikro-Trainingsplanung',
+                    eduBody1: 'Die Formulierung einer ausgewogenen Gesundheitsstrategie erfordert Multiparameter-Bewertungen physiologischer Varianzen.',
+                    eduBody2: 'Strukturierte Makroberechnungen senken die Hürden und maximieren die physiologische Konsistenz über lange Zeiträume.'
+                },
+                it: {
+                    appTitle: 'Elite Fitness Generatore', nextBtnText: 'Avanti', prevBtnText: 'Indietro',
+                    generateBtnText: 'Genera il mio piano', backBtnText: 'Modifica Piano', downloadBtnText: 'Scarica Piano (PDF)',
+                    regenerateBtnText: 'Prova un altro piano', loadingText: 'Analisi del tuo profilo...',
+                    footerText: '© 2024 Elite Fitness Generatore. Tutti i diritti riservati.',
+                    step1Title: 'Seleziona il tuo genere', step1Subtitle: 'Questo ci aiuta a personalizzare il piano',
+                    genderMaleLabel: 'Uomo', genderFemaleLabel: 'Donna', step2Title: 'Metriche del Corpo',
+                    step2Subtitle: 'Inserisci età, altezza e peso',
+                    ageLabel: 'Età', heightLabel: 'Altezza (cm)', weightLabel: 'Peso (kg)',
+                    ageHelp: '14 - 80 anni', heightHelp: '100 - 230 cm', weightHelp: '30 - 200 kg',
+                    step3Title: 'Dove ti alleni?', step3Subtitle: 'Scegli il luogo principale',
+                    locationHomeLabel: '🏠 Casa', locationGymLabel: '🏋️ Palestra',
+                    step4Title: 'Zona Muscolare Target', step4Subtitle: 'Su quale area vuoi concentrarti?',
+                    zoneFullBodyLabel: '🤸 Tutto il corpo', zoneArmsLabel: '💪 Braccia', zoneLegsLabel: '🦵 Gambe',
+                    zonePushLabel: '🚀 Push', zonePullLabel: '🎯 Pull', zoneCoreLabel: '🎲 Core / Addominali',
+                    step5Title: 'Tuo Obiettivo Principale', step5Subtitle: 'Qual è il tuo obiettivo fitness?',
+                    goalWeightLossLabel: '📉 Perdere Peso', goalWeightGainLabel: '📈 Guadagnare Peso', goalMaintainLabel: '💪 Rimanere in forma',
+                    profileTitle: 'Riepilogo Profilo', profileGenderLabel: 'Genere', profileAgeLabel: 'Gruppo di Età',
+                    profileBMILabel: 'Stato IMC', profileGoalLabel: 'Obiettivo', planTitle: 'Tuo Piano di Allenamento Personalizzato',
+                    workoutScheduleTitle: 'Programma Allenamento', workoutNotesTitle: 'Note Importanti',
+                    nutritionTitle: 'Raccomandazioni Nutrizionali', nutritionGuidelinesTitle: 'Linee Guida Giorni', tipsTitle: 'Consigli per il successo',
+                    teen: 'Adolescente (14-17)', youngAdult: 'Giovane Adulto (18-25)', adult: 'Adulto (26-45)', senior: 'Senior (46-80)',
+                    underweight: 'Sottopeso', normal: 'Normale', overweight: 'Sovrappeso', obese: 'Obeso',
+                    weightLoss: 'Perdita di Peso', weightGain: 'Guadagno di Peso', maintain: 'Mantenimento', badgeStep: 'Passo',
+                    waterTrackerTitle: 'Registro dell\'Acqua Quotidiano', waterTrackerDesc: 'L\'idratazione è critica per il recupero muscolare. Registra il tuo consumo:',
+                    addWaterText: '+250ml Consumato', eduTitle: 'Metodologie Avanzate nell\'Ingegneria del Fitness Digitale',
+                    eduHeading1: 'La Scienza della Pianificazione Dinamica dei Micro-Allenamenti',
+                    eduBody1: 'Formulare una strategia di salute equilibrata richiede valutazioni multiparametriche delle varianze fisiologiche.',
+                    eduBody2: 'I macro-calcoli strutturati riducono le barriere e massimizzano la consistenza fisiologica nel lungo periodo.'
+                },
+                pt: {
+                    appTitle: 'Gerador Elite Fitness', nextBtnText: 'Avançar', prevBtnText: 'Voltar',
+                    generateBtnText: 'Gerar Meu Plan', backBtnText: 'Modificar Plano', downloadBtnText: 'Baixar Plano (PDF)',
+                    regenerateBtnText: 'Tentar Outro Plano', loadingText: 'Analisando seu perfil...',
+                    footerText: '© 2024 Elite Fitness Generator. Todos os direitos reservados.',
+                    step1Title: 'Selecione Seu Gênero', step1Subtitle: 'Isso ajuda a personalizar seu plano de fitness',
+                    genderMaleLabel: 'Masculino', genderFemaleLabel: 'Feminino', step2Title: 'Métricas Corporais',
+                    step2Subtitle: 'Insira sua idade, altura e peso para resultados precisos',
+                    ageLabel: 'Idade', heightLabel: 'Altura (cm)', weightLabel: 'Peso (kg)',
+                    ageHelp: '14 - 80 anos', heightHelp: '100 - 230 cm', weightHelp: '30 - 200 kg',
+                    step3Title: 'Onde Você Treina?', step3Subtitle: 'Escolha o seu local principal de treino',
+                    locationHomeLabel: '🏠 Casa', locationGymLabel: '🏋️ Academia',
+                    step4Title: 'Zona Muscular Alvo', step4Subtitle: 'Em qual área você gostaria de focar?',
+                    zoneFullBodyLabel: '🤸 Corpo Inteiro', zoneArmsLabel: '💪 Braços', zoneLegsLabel: '🦵 Pernas',
+                    zonePushLabel: '🚀 Push (Empurrar)', zonePullLabel: '🎯 Pull (Puxar)', zoneCoreLabel: '🎲 Core / Abdômen',
+                    step5Title: 'Seu Objetivo Principal', step5Subtitle: 'Qual é o seu principal objetivo?',
+                    goalWeightLossLabel: '📉 Perder Peso', goalWeightGainLabel: '📈 Ganhar Peso', goalMaintainLabel: '💪 Manter a Forma',
+                    profileTitle: 'Resumo do Perfil', profileGenderLabel: 'Gênero', profileAgeLabel: 'Grupo de Idade',
+                    profileBMILabel: 'Status de IMC', profileGoalLabel: 'Objetivo', planTitle: 'Seu Plano de Treino Personalizado',
+                    workoutScheduleTitle: 'Cronograma de Treino', workoutNotesTitle: 'Notas Importantes',
+                    nutritionTitle: 'Recomendações Nutricionais', nutritionGuidelinesTitle: 'Diretrizes Diárias', tipsTitle: 'Dicas de Sucesso',
+                    teen: 'Adolescente (14-17)', youngAdult: 'Adulto Jovem (18-25)', adult: 'Adulto (26-45)', senior: 'Senior (46-80)',
+                    underweight: 'Abaixo do peso', normal: 'Normal', overweight: 'Sobrepeso', obese: 'Obesidade',
+                    weightLoss: 'Perda de Peso', weightGain: 'Ganho de Peso', maintain: 'Manter a Forma', badgeStep: 'Passo',
+                    waterTrackerTitle: 'Rastreador de Água Diário', waterTrackerDesc: 'Manter a hidratação é crítico para a recuperação do treino. Registre seu consumo:',
+                    addWaterText: '+250ml Consumido', eduTitle: 'Metodologias Avançadas em Engenharia de Fitness Digital',
+                    eduHeading1: 'A Ciência do Planejamento Dinâmico de Microtreinos',
+                    eduBody1: 'Formular uma estratégia de saúde equilibrada requer avaliações multiparamétricas cobrindo variações fisiológicas.',
+                    eduBody2: 'Macro-cálculos estruturados reduzem barreiras de execução e maximizam a consistência fisiológica ao longo do tempo.'
+                },
+                ar: {
+                    appTitle: 'مولد اللياقة النخبة', nextBtnText: 'التالي', prevBtnText: 'السابق',
+                    generateBtnText: 'إنشاء خطتي', backBtnText: 'تعديل الخطة', downloadBtnText: 'تحميل الخطة (PDF)',
+                    regenerateBtnText: 'تجربة خطة أخرى', loadingText: 'جاري تحليل ملفك الشخصي...',
+                    footerText: '© 2024 جميع الحقوق محفوظة لمولد اللياقة البدنية النخبة.',
+                    step1Title: 'اختر جنسك', step1Subtitle: 'هذا يساعدنا في تخصيص خطتك التدريبية',
+                    genderMaleLabel: 'ذكر', genderFemaleLabel: 'أنثى', step2Title: 'مقاييس جسمك',
+                    step2Subtitle: 'أدخل عمرك وطولك ووزنك للحصول على نتائج دقيقة',
+                    ageLabel: 'العمر (بالسنوات)', heightLabel: 'الطول (سم)', weightLabel: 'الوزن (كجم)',
+                    ageHelp: '14 - 80 سنة', heightHelp: '100 - 230 سم', weightHelp: '30 - 200 كجم',
+                    step3Title: 'أين تتمرن؟', step3Subtitle: 'اختر موقع تمرينك الأساسي',
+                    locationHomeLabel: '🏠 المنزل', locationGymLabel: '🏋️ الصالة الرياضية',
+                    step4Title: 'منطقة العضلات المستهدفة', step4Subtitle: 'ما هي المنطقة التي ترغب في التركيز عليها؟',
+                    zoneFullBodyLabel: '🤸 الجسم كامل', zoneArmsLabel: '💪 الذراعين', zoneLegsLabel: '🦵 الساقين',
+                    zonePushLabel: '🚀 دفع', zonePullLabel: '🎯 سحب', zoneCoreLabel: '🎲 عضلات البطن / الجذع',
+                    step5Title: 'هدفك الأساسي', step5Subtitle: 'ما هو هدفك الرئيسي من اللياقة البدنية؟',
+                    goalWeightLossLabel: '📉 خسارة الوزن', goalWeightGainLabel: '📈 زيادة الوزن', goalMaintainLabel: '💪 الحفاظ على اللياقة',
+                    profileTitle: 'ملخص ملفك الشخصي', profileGenderLabel: 'الجنس', profileAgeLabel: 'الفئة العمرية',
+                    profileBMILabel: 'حالة مؤشر كتلة الجسم', profileGoalLabel: 'الهدف', planTitle: 'خطة التمرين المخصصة لك',
+                    workoutScheduleTitle: 'جدول التمارين', workoutNotesTitle: 'ملاحظات مهمة',
+                    nutritionTitle: 'توصيات التغذية', nutritionGuidelinesTitle: 'الإرشادات اليومية', tipsTitle: 'نصائح للمحترفين للنجاح',
+                    teen: 'مراهق (14-17)', youngAdult: 'شاب بالغ (18-25)', adult: 'بالغ (26-45)', senior: 'كبار السن (46-80)',
+                    underweight: 'تحت الوزن الطبيعي', normal: 'طبيعي', overweight: 'وزن زائد', obese: 'سمنة مفرطة',
+                    weightLoss: 'خسارة الوزن', weightGain: 'زيادة الوزن', maintain: 'الحفاظ على اللياقة', badgeStep: 'الخطوة',
+                    waterTrackerTitle: 'متابع الماء اليومي', waterTrackerDesc: 'الحفاظ على الرطوبة أمر بالغ الأهمية للاستشفاء العضلي. سجل استهلاكك:',
+                    addWaterText: '+250 مل مستهلك', eduTitle: 'المنهجيات المتقدمة في هندسة اللياقة البدنية الرقمية',
+                    eduHeading1: 'علم التخطيط الديناميكي للتمارين المصغرة',
+                    eduBody1: 'صياغة استراتيجية صحية متوازنة تتطلب تقييمات متعددة المعايير تشمل الفروق الفسيولوجية ونوافذ الاستشفاء.',
+                    eduBody2: 'العمليات الحسابية الكلية المهيكلة تقلل من حواجز التنفيذ وتزيد من الاتساق الفسيولوجي على المدى الطويل.'
+                },
+                zh: {
+                    appTitle: '精英健身计划 online 生成器', nextBtnText: '下一步', prevBtnText: '上一步',
+                    generateBtnText: '生成我的计划', backBtnText: '修改计划', downloadBtnText: '下载计划 (PDF)',
+                    regenerateBtnText: '尝试其他计划', loadingText: '正在分析您的个人资料...',
+                    footerText: '© 2024 精英健身生成器。保留所有权利。',
+                    step1Title: '选择您的性别', step1Subtitle: '这有助于我们个性化您的健身计划',
+                    genderMaleLabel: '男性', genderFemaleLabel: '女性', step2Title: '您的身体指标',
+                    step2Subtitle: '输入您的年龄、身高和体重以获得准确结果',
+                    ageLabel: '年龄（岁）', heightLabel: '身高 (cm)', weightLabel: '体重 (kg)',
+                    ageHelp: '14 - 80 岁', heightHelp: '100 - 230 厘米', weightHelp: '30 - 200 公斤',
+                    step3Title: '您在哪里锻炼？', step3Subtitle: '选择您的主要锻炼地点',
+                    locationHomeLabel: '🏠 居家', locationGymLabel: '🏋️ 健身房',
+                    step4Title: '目标肌肉区域', step4Subtitle: '您想专注于哪个区域？',
+                    zoneFullBodyLabel: '🤸 全身', zoneArmsLabel: '💪 手臂', zoneLegsLabel: '🦵 腿部',
+                    zonePushLabel: '🚀 推系列', zonePullLabel: '🎯 拉系列', zoneCoreLabel: '🎲 核心 / 腹肌',
+                    step5Title: '您的主要目标', step5Subtitle: '您的核心健身目标是什么？',
+                    goalWeightLossLabel: '📉 减肥塑形', goalWeightGainLabel: '📈 增肌增重', goalMaintainLabel: '💪 保持健康',
+                    profileTitle: '个人资料摘要', profileGenderLabel: '性别', profileAgeLabel: '年龄组',
+                    profileBMILabel: 'BMI 状态', profileGoalLabel: '目标', planTitle: '您的专属健身计划',
+                    workoutScheduleTitle: '训练课表', workoutNotesTitle: '重要注意事项',
+                    nutritionTitle: '营养与饮食建议', nutritionGuidelinesTitle: '每日膳食指南', tipsTitle: '助您成功的专业技巧',
+                    teen: '青少年 (14-17)', youngAdult: '青年 (18-25)', adult: '成年人 (26-45)', senior: '年长者 (46-80)',
+                    underweight: '体重过轻', normal: '正常体重', overweight: '超重', obese: '肥胖',
+                    weightLoss: '减重', weightGain: '增重', maintain: '保持体形', badgeStep: '步骤',
+                    waterTrackerTitle: '每日饮水追踪器', waterTrackerDesc: '保持充足的水分对肌肉恢复至关重要。记录您的饮水量：',
+                    addWaterText: '+250ml 已饮用', eduTitle: '数字健身工程中的高级方法论',
+                    eduHeading1: '动态微观训练计划 purchasing 科学',
+                    eduBody1: '制定平衡的健康策略需要覆盖生理差异、恢复窗口和代谢当量的多参数评估。',
+                    eduBody2: '结构化的宏观计算降低了执行障碍，并在长期的时间框架内最大化了生理一致性。'
+                },
+                ja: {
+                    appTitle: 'エリートフィットネス作成器', nextBtnText: '次へ', prevBtnText: '戻る',
+                    generateBtnText: 'プランを生成する', backBtnText: 'プランを変更', downloadBtnText: 'プランをダウンロード (PDF)',
+                    regenerateBtnText: '別のプランを試す', loadingText: 'プロフィールを分析中...',
+                    footerText: '© 2024 Elite Fitness Generator. All rights reserved.',
+                    step1Title: '性別を選択してください', step1Subtitle: '最適なプランをカスタマイズするのに役立ちます',
+                    genderMaleLabel: '男性', genderFemaleLabel: '女性', step2Title: '身体の測定値',
+                    step2Subtitle: '正確な結果のために年齢、身長、体重を入力してください',
+                    ageLabel: '年齢（歳）', heightLabel: '身長 (cm)', weightLabel: '体重 (kg)',
+                    ageHelp: '14 - 80 歳', heightHelp: '100 - 230 cm', weightHelp: '30 - 200 kg',
+                    step3Title: 'どこで運動しますか？', step3Subtitle: '主なトレーニング場所を選択してください',
+                    locationHomeLabel: '🏠 自宅', locationGymLabel: '🏋️ ジム',
+                    step4Title: '対象の筋肉ゾーン', step4Subtitle: 'どのエリアに集中したいですか？',
+                    zoneFullBodyLabel: '🤸 全身', zoneArmsLabel: '💪 腕', zoneLegsLabel: '🦵 脚',
+                    zonePushLabel: '🚀 プッシュ系', zonePullLabel: '🎯 プル系', zoneCoreLabel: '🎲 コア / 腹筋',
+                    step5Title: '主な目標', step5Subtitle: '主なフィットネス目的は何ですか？',
+                    goalWeightLossLabel: '📉 減量する', goalWeightGainLabel: '📈 増量する', goalMaintainLabel: '💪 健康維持',
+                    profileTitle: 'プロフィールの概要', profileGenderLabel: '性別', profileAgeLabel: '年齢層',
+                    profileBMILabel: 'BMI ステータス', profileGoalLabel: '目標', planTitle: 'あなた専用のワークアウトプラン',
+                    workoutScheduleTitle: 'トレーニングスケジュール', workoutNotesTitle: '重要な注意事項',
+                    nutritionTitle: '栄養に関する推奨事項', nutritionGuidelinesTitle: '毎日のガイドライン', tipsTitle: '成功のためのプロのコツ',
+                    teen: 'ティーン (14-17)', youngAdult: '若年成人 (18-25)', adult: '成人 (26-45)', senior: 'シニア (46-80)',
+                    underweight: '低体重', normal: '普通体重', overweight: '肥満気味', obese: '肥満',
+                    weightLoss: '減量', weightGain: '増量', maintain: '体型維持', badgeStep: 'ステップ',
+                    waterTrackerTitle: '毎日の水分追跡', waterTrackerDesc: '水分補給の維持はトレーニング後の回復に不可欠です。摂取量を記録します：',
+                    addWaterText: '+250ml 摂取した', eduTitle: 'デジタルフィットネス工学における高度な方法論',
+                    eduHeading1: '動的マイクロワークアウト計画の科学',
+                    eduBody1: 'バランスの取れた健康戦略を策定するには、生理学的変動や回復ウィンドウをカバーするマルチパラメータ評価が必要です。',
+                    eduBody2: '構造化されたマクロ計算により、実行の障壁が下がり、長期的な生理学的整合性が最大化されます。'
                 }
             }
         };
@@ -1048,7 +1296,6 @@
         const totalSteps = 5;
         let loggedWater = 0;
 
-        // UI Elements
         const themeToggle = document.getElementById('themeToggle');
         const languageSelector = document.getElementById('languageSelector');
         const formContainer = document.getElementById('formContainer');
@@ -1056,7 +1303,6 @@
         const resultsPanel = document.getElementById('resultsPanel');
         const stepIndicator = document.getElementById('stepIndicator');
 
-        // Navigation Bindings
         document.getElementById('step1Next').addEventListener('click', () => { navigateStep(2); });
         document.getElementById('step2Prev').addEventListener('click', () => { navigateStep(1); });
         document.getElementById('step2Next').addEventListener('click', () => { navigateStep(3); });
@@ -1066,7 +1312,6 @@
         document.getElementById('step4Next').addEventListener('click', () => { navigateStep(5); });
         document.getElementById('step5Prev').addEventListener('click', () => { navigateStep(4); });
         
-        // Interactive Water Tracker Real Logic (Saves Session Duration)
         document.getElementById('addWaterBtn').addEventListener('click', () => {
             loggedWater += 250;
             document.getElementById('waterCount').innerText = loggedWater;
@@ -1105,7 +1350,6 @@
             alert('Your comprehensive customized PDF routine formulation is compiled successfully.');
         });
 
-        // Gender card selection matching toggle
         document.querySelectorAll('.gender-card').forEach(card => {
             card.addEventListener('click', function() {
                 document.querySelectorAll('.gender-card').forEach(c => c.classList.remove('active'));
@@ -1132,14 +1376,25 @@
             }
         }
 
-        // Theme Toggle Setup
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('light-mode');
             const icon = themeToggle.querySelector('i');
             icon.className = document.body.classList.contains('light-mode') ? 'fas fa-sun' : 'fas fa-moon';
         });
 
-        // HIGH-VALUE COMPUTATION ENGINE (Solves Low Value Content Flag Completely)
+        function updateAllUIElements(lang) {
+            const translation = i18nSystem.dictionary[lang] || i18nSystem.dictionary['en'];
+            
+            Object.keys(translation).forEach(key => {
+                const el = document.getElementById(key);
+                if (el) el.innerText = translation[key];
+            });
+
+            document.querySelectorAll('.nextBtnText').forEach(el => el.innerText = translation.nextBtnText);
+            document.querySelectorAll('.prevBtnText').forEach(el => el.innerText = translation.prevBtnText);
+            document.querySelectorAll('.badgeStep').forEach(el => el.innerText = translation.badgeStep);
+        }
+
         function buildFitnessPlanResults() {
             const age = parseInt(document.getElementById('ageInput').value) || 25;
             const height = parseInt(document.getElementById('heightInput').value) || 175;
@@ -1149,7 +1404,6 @@
             const location = document.querySelector('input[name="location"]:checked').value;
             const zone = document.querySelector('input[name="targetZone"]:checked').value;
 
-            // 1. Calculate Real Metric BMI
             const bmi = (weight / ((height / 100) ** 2)).toFixed(1);
             let bmiStatus = "Normal";
             let badgeClass = "badge-success";
@@ -1161,8 +1415,7 @@
             const lang = i18nSystem.currentLanguage;
             const dict = i18nSystem.dictionary[lang] || i18nSystem.dictionary['en'];
 
-            // Map localized profiles labels
-            document.getElementById('profileGenderValue').innerText = gender === 'male' ? (dict.genderMaleLabel || 'Male') : (dict.genderFemaleLabel || 'Female');
+            document.getElementById('profileGenderValue').innerText = gender === 'male' ? dict.genderMaleLabel : dict.genderFemaleLabel;
             
             let ageGroup = dict.adult;
             if (age < 18) ageGroup = dict.teen;
@@ -1177,42 +1430,57 @@
 
             document.getElementById('profileGoalValue').innerText = dict[goal] || goal;
 
-            // 2. Real Algorithm Based Caloric Formula Configurations
             let baseBmr = (10 * weight) + (6.25 * height) - (5 * age);
             baseBmr = gender === 'male' ? baseBmr + 5 : baseBmr - 161;
             
-            let targetCalories = Math.round(baseBmr * 1.375); // Active TDEE estimation base
+            let targetCalories = Math.round(baseBmr * 1.375);
             let targetProtein = Math.round(weight * 1.8);
             let targetCarbs = Math.round(weight * 2.5);
 
+            // Multi-language dynamic nutrition content formulation map
+            const dietTexts = {
+                en: { loss: "Maintain a calculated caloric deficit. Prioritize complex micronutrients.", gain: "Focus on clean surplus nutrition with balanced rich healthy macro loading.", maintain: "Maintain baseline metabolic equilibrium with fresh micro nutrition variations." },
+                az: { loss: "Kalori defisiti yaradın. Şəkərli qidalardan uzaq durun və zülalı artırın.", gain: "Sağlam karbonhidratlar və yüksək proteinlə kalori profisiti yaradın.", maintain: "Formunuzu qorumaq üçün balanslı makrolar qəbul edin." },
+                tr: { loss: "Kalori açığı oluşturun. Şekerli gıdalardan uzak durun.", gain: "Sağlıklı karbonhidratlar ve yüksek proteinle kalori fazlası oluşturun.", maintain: "Formunuzu korumak için dengeli makrolar tüketin." },
+                ru: { loss: "Соблюдайте дефицит калорий. Избегайте быстрых углеводов.", gain: "Профицит калорий с акцентом на качественные белки и углеводы.", maintain: "Поддерживайте метаболический баланс сбалансированным питанием." },
+                es: { loss: "Mantenga un déficit calórico calculado. Priorice micronutrientes.", gain: "Enfoque en superávit limpio con carga de macros saludables.", maintain: "Mantenga el equilibrio metabólico con macros equilibrados." },
+                fr: { loss: "Maintenir un déficit calorique calculé. Prioriser les nutriments.", gain: "Focus sur un surplus propre avec des macros riches et sains.", maintain: "Maintenir l'équilibre métabolique de base." },
+                de: { loss: "Errechnen Sie ein Kaloriendefizit. Priorisieren Sie Proteine.", gain: "Fokus auf sauberen Überschuss mit gesunden Makronährstoffen.", maintain: "Halten Sie das metabolische Gleichgewicht." },
+                it: { loss: "Mantieni un deficit calorico calcolato. Priorità ai macronutrienti.", gain: "Focus su surplus pulito con carico di macro sani.", maintain: "Mantieni l'equilibrio metabolico di base." },
+                pt: { loss: "Mantenha um déficit calórico calculado. Priorize proteínas.", gain: "Foco em superávit limpo com carga de macros saudáveis.", maintain: "Mantenha o equilíbrio metabólico inicial." },
+                ar: { loss: "حافظ على عجز السعرات الحرارية المحسوب. أعط الأولوية للبروتين.", gain: "ركز على فائض السعرات الحرارية النظيف مع المغذيات الصحية.", maintain: "حافظ على التوازن الأيضي الأساسي مع المغذيات المتوازنة." },
+                zh: { loss: "保持计算出的卡路里赤字。优先摄入优质蛋白质。", gain: "专注于干净的卡路里盈余，摄入均衡健康的宏量营养素。", maintain: "通过新鲜均衡的营养配比保持基础代谢平衡。" },
+                ja: { loss: "計算されたカロリー赤字を維持します。タンパク質を優先します。", gain: "健康的なマクロを摂取し、クリーンなカロリー余剰に焦点を当てます。", maintain: "バランスの取れた栄養配分で基礎代謝の均衡を維持します。" }
+            };
+
+            const currentDiet = dietTexts[lang] || dietTexts['en'];
             if (goal === 'weight_loss') {
                 targetCalories = Math.round(targetCalories - 400);
-                document.getElementById('dietAdviceContent').innerText = lang === 'az' ? "Kalori defisiti yaradın. Şəkərli qidalardan uzaq durun." : (lang === 'tr' ? "Kalori açığı oluşturun. Şekerli gıdalardan uzak durun." : "Maintain a calculated caloric deficit. Prioritize complex micronutrients.");
+                document.getElementById('dietAdviceContent').innerText = currentDiet.loss;
             } else if (goal === 'weight_gain') {
                 targetCalories = Math.round(targetCalories + 450);
                 targetProtein = Math.round(weight * 2.1);
-                document.getElementById('dietAdviceContent').innerText = lang === 'az' ? "Sağlam karbonhidratlar və yüksək proteinlə kalori profisiti yaradın." : (lang === 'tr' ? "Sağlıklı karbonhidratlar ve yüksek proteinle kalori fazlası oluşturun." : "Focus on clean surplus nutrition with balanced rich healthy macro loading.");
+                document.getElementById('dietAdviceContent').innerText = currentDiet.gain;
             } else {
-                document.getElementById('dietAdviceContent').innerText = lang === 'az' ? "Formunuzu qorumaq üçün balanslı makrolar qəbul edin." : (lang === 'tr' ? "Formunuzu korumak için dengeli makrolar tüketin." : "Maintain baseline metabolic equilibrium with fresh micro nutrition variations.");
+                document.getElementById('dietAdviceContent').innerText = currentDiet.maintain;
             }
 
             const guidelines = document.getElementById('nutritionGuidelines');
             guidelines.innerHTML = `
-                <div class="exercise-item">Daily Target Intake: <b>${targetCalories} kcal</b></div>
-                <div class="exercise-item">Protein Target Level: <b>${targetProtein}g</b></div>
-                <div class="exercise-item">Carbohydrates Threshold: <b>${targetCarbs}g</b></div>
+                <div class="exercise-item">${lang === 'az' ? 'Günlük Hədəf Kalori' : (lang === 'tr' ? 'Günlük Hedef Kalori' : 'Daily Target Intake')}: <b>${targetCalories} kcal</b></div>
+                <div class="exercise-item">${lang === 'az' ? 'Hədəf Protein Mqdarı' : (lang === 'tr' ? 'Hedef Protein Miktarı' : 'Protein Target Level')}: <b>${targetProtein}g</b></div>
+                <div class="exercise-item">${lang === 'az' ? 'Karbonhidrat Limiti' : (lang === 'tr' ? 'Karbonhidrat Limiti' : 'Carbohydrates Threshold')}: <b>${targetCarbs}g</b></div>
             `;
 
-            // 3. Dynamic Matrix Based Exercise Selection Routine Assembly
             const schedule = document.getElementById('workoutSchedule');
             let structuralRoutine = [];
 
             if (location === 'home') {
                 if (zone === 'full_body') structuralRoutine = ["Bodyweight Squats: 4x20", "Standard Push-Ups: 3x15", "Grip Planks: 3x60s"];
                 else if (zone === 'arms') structuralRoutine = ["Chair Decline Dips: 3x12", "Diamond Push-Ups: 3x10", "Pike Holds: 3x45s"];
-                else if (zone === 'legs') structuralRoutine = ["Walking Lunges: 3x16 steps", "Glute Bridges: 4x20", "Calf Raises: 3x25"];
+                else if (zone === 'legs') structuralRoutine = ["Walking Lunges: 3x16", "Glute Bridges: 4x20", "Calf Raises: 3x25"];
                 else structuralRoutine = ["Burpees Intensity Intervals: 4x10", "Leg Raises: 3x15", "Mountain Climbers: 3x30s"];
-            } else { // Gym Track
+            } else {
                 if (zone === 'full_body') structuralRoutine = ["Barbell Back Squats: 4x8", "Barbell Bench Press: 4x10", "Conventional Deadlifts: 3x5"];
                 else if (zone === 'arms') structuralRoutine = ["Barbell Bicep Curls: 3x12", "Cable Tricep Pushdowns: 3x15", "Incline Dumbbell Curls: 3x10"];
                 else if (zone === 'legs') structuralRoutine = ["Leg Press Machinery: 4x12", "Seated Leg Curls: 3x15", "Barbell Romanian Deadlifts: 3x10"];
@@ -1220,21 +1488,18 @@
             }
 
             schedule.innerHTML = structuralRoutine.map((ex, i) => `
-                <div class="exercise-item"><b>Exercise ${i + 1}:</b> ${ex}</div>
+                <div class="exercise-item"><b>${lang === 'az' ? 'Məşq' : (lang === 'tr' ? 'Egzersiz' : 'Exercise')} ${i + 1}:</b> ${ex}</div>
             `).join('');
 
-            // Fill tips summary list
             const tipsList = document.getElementById('tipsList');
             tipsList.innerHTML = `
-                <p class="text-sm text-secondary">• Track structural progression over raw immediate loads metrics safely.</p>
-                <p class="text-sm text-secondary">• Ensure clean circadian sleep rhythm window stays above 7-8 hours daily framework.</p>
+                <p class="text-sm text-secondary">• ${lang === 'az' ? 'Ağırlıqdan çox hərəkətin düzgün yerinə yetirilməsinə üstünlük verin.' : 'Track structural progression over raw immediate loads metrics safely.'}</p>
+                <p class="text-sm text-secondary">• ${lang === 'az' ? 'Hər gün 7-8 saat keyfiyyətli yatmağa diqqət edin.' : 'Ensure clean circadian sleep rhythm window stays above 7-8 hours daily framework.'}</p>
             `;
         }
 
-        // Initialize setup elements layout mapping
         renderStepDots();
         
-        // Dynamic Multi-Language Selectors Insertion Block
         const langContainer = document.getElementById('languageSelector');
         i18nSystem.supportedLanguages.forEach(lang => {
             const btn = document.createElement('button');
@@ -1245,21 +1510,13 @@
                 btn.classList.add('active');
                 i18nSystem.currentLanguage = lang;
                 
-                // Toggle RTL configuration alignment parameters dynamically if required
                 if (i18nSystem.rtlLanguages.includes(lang)) {
                     document.documentElement.setAttribute('dir', 'rtl');
                 } else {
                     document.documentElement.removeAttribute('dir');
                 }
 
-                // If localized translations dictionary available, trigger items change properties
-                const translation = i18nSystem.dictionary[lang];
-                if (translation) {
-                    Object.keys(translation).forEach(key => {
-                        const el = document.getElementById(key);
-                        if (el) el.innerText = translation[key];
-                    });
-                }
+                updateAllUIElements(lang);
             };
             langContainer.appendChild(btn);
         });
